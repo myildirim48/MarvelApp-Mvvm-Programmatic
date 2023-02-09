@@ -16,9 +16,6 @@ class  MainVC: UIViewController {
             let data = try await NetworkManager.shared.getDataGeneric(for: EndPoints.charactersUrl(page: 1), data: GameDetail.self)
             print(data)
         }
-        
     }
-
-
 }
 
