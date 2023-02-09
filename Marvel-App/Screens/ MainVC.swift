@@ -7,8 +7,21 @@
 
 import UIKit
 
-class  MainVC: UIViewController {
+fileprivate typealias CharDataSource = UICollectionViewDiffableDataSource<MainVC.Section,CharResult>
 
+class MainVC: LoadingVC {
+    
+    private var characters : [CharResult] = []
+    private var filteredCharacters : [CharResult] = []
+    
+    private var pageNum = 1
+    private var hasMoreData = true
+    private var isSearching = false
+    private var isLoadingMoreData = false
+    
+    private var collectionView : UICollectionView!
+    private var dataSource : CharDataSource!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -17,5 +30,16 @@ class  MainVC: UIViewController {
             print(data)
         }
     }
+    
+    private func configureCollectionView(){
+        
+    }
 }
+
+extension MainVC {
+    fileprivate enum Section {
+        case character
+    }
+}
+
 

@@ -16,11 +16,12 @@ struct GameDetail: Codable{
 // MARK: - DataClass
 struct DataClass: Codable {
     let offset, limit, total, count: Int
-    let results: [Result]
+    let results: [CharResult]
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct CharResult: Codable, Hashable {
+
     let id: Int
     let name, description: String
     let modified: Date
@@ -33,7 +34,7 @@ struct Result: Codable {
 }
 
 // MARK: - Comics
-struct Comics: Codable {
+struct Comics: Codable,Hashable {
     let available: Int
     let collectionURI: String
     let items: [ComicsItem]
@@ -41,13 +42,13 @@ struct Comics: Codable {
 }
 
 // MARK: - ComicsItem
-struct ComicsItem: Codable {
+struct ComicsItem: Codable,Hashable {
     let resourceURI: String
     let name: String
 }
 
 // MARK: - Stories
-struct Stories: Codable {
+struct Stories: Codable,Hashable {
     let available: Int
     let collectionURI: String
     let items: [StoriesItem]
@@ -55,7 +56,7 @@ struct Stories: Codable {
 }
 
 // MARK: - StoriesItem
-struct StoriesItem: Codable {
+struct StoriesItem: Codable,Hashable {
     let resourceURI: String
     let name: String
     let type: ItemType
@@ -68,7 +69,7 @@ enum ItemType: String, Codable {
 }
 
 // MARK: - Thumbnail
-struct Thumbnail: Codable {
+struct Thumbnail: Codable,Hashable {
     let path: String
     let thumbnailExtension: Extension
 
@@ -84,7 +85,7 @@ enum Extension: String, Codable {
 }
 
 // MARK: - URLElement
-struct URLElement: Codable {
+struct URLElement: Codable,Hashable {
     let type: URLType
     let url: String
 }
