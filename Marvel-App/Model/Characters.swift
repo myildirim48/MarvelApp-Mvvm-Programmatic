@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct GameDetail: Codable{
+struct Characters: Codable{
     let code: Int
     let status, copyright, attributionText, attributionHTML: String
     let etag: String
@@ -21,7 +21,6 @@ struct DataClass: Codable {
 
 // MARK: - Result
 struct CharResult: Codable, Hashable {
-
     let id: Int
     let name, description: String
     let modified: Date

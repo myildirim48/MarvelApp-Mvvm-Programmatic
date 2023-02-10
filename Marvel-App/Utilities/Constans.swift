@@ -10,3 +10,7 @@ import UIKit
 enum Images {
     static let emptyImage = UIImage(named: "marvel-logo")
 }
+
+enum SFSymbols{
+    static let checkMark = "checkmark.circle"
+}
