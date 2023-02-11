@@ -54,6 +54,7 @@ class MainVC: LoadingVC {
                 let data = try await NetworkManager.shared.getDataGeneric(for: EndPoints.charactersUrl(page: 1), data: Characters.self)
                 updateUI(with: data)
                 dissmisLoadingView()
+                
             }catch{
                 if let err = error as? marvelError{
                     presentMrAlert(title: "Bad stuff happend", message: err.rawValue, buttonTitle: "Ok")
