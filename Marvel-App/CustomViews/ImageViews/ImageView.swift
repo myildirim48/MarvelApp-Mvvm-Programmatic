@@ -23,13 +23,18 @@ class ImageView: UIImageView {
     private func configure() {
         layer.cornerRadius = 10
         clipsToBounds = true
-        image = placeHolderImage
+//        image = placeHolderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func downloadImage(fromUrl url:String) {
+    func downloadImage(fromUrl url: String) {
+        //Here is adds .jpg and http's' for security url
+        var newUrls = url + ".jpg"
+        let i = newUrls.index(newUrls.startIndex, offsetBy: 4)
+        newUrls.insert("s", at: i)
+        
         Task {
-            image = await NetworkManager.shared.downloadImage(from:url) ?? placeHolderImage
+            image = await NetworkManager.shared.downloadImage(from:newUrls) ?? placeHolderImage
         }
     }
 }
