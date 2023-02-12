@@ -32,6 +32,7 @@
 		74D8AFB429969A23008D5B62 /* MrAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFB329969A23008D5B62 /* MrAlertVC.swift */; };
 		74D8AFB829969A94008D5B62 /* AlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFB729969A94008D5B62 /* AlertContainerView.swift */; };
 		74D8AFBB29969B64008D5B62 /* MrButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBA29969B64008D5B62 /* MrButton.swift */; };
+		74D8AFBD29996421008D5B62 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBC29996421008D5B62 /* Comics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		74D8AFB329969A23008D5B62 /* MrAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrAlertVC.swift; sourceTree = "<group>"; };
 		74D8AFB729969A94008D5B62 /* AlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContainerView.swift; sourceTree = "<group>"; };
 		74D8AFBA29969B64008D5B62 /* MrButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrButton.swift; sourceTree = "<group>"; };
+		74D8AFBC29996421008D5B62 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				74D8AF902993F861008D5B62 /* Characters.swift */,
+				74D8AFBC29996421008D5B62 /* Comics.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				74D8AFB22996983B008D5B62 /* UIViewController+Ext.swift in Sources */,
 				74D8AFBB29969B64008D5B62 /* MrButton.swift in Sources */,
 				74D8AFB429969A23008D5B62 /* MrAlertVC.swift in Sources */,
+				74D8AFBD29996421008D5B62 /* Comics.swift in Sources */,
 				74D8AF8A2993C50C008D5B62 /* String+Ext.swift in Sources */,
 				74D8AFA92995197E008D5B62 /* Constans.swift in Sources */,
 				74D8AF95299429EA008D5B62 /* EndPoints.swift in Sources */,

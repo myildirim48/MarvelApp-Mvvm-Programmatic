@@ -10,6 +10,7 @@ import UIKit
 class MainVC: LoadingVC {
     enum Section {
         case character
+        case comics
     }
     
     private var characters : Characters?
