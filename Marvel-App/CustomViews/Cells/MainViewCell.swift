@@ -22,7 +22,7 @@ class MainViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(character: CharResult){
+    func set(character: CharacterModel){
         charNameLabel.text = character.name
         charImageView.downloadImage(fromUrl: character.thumbnail.path)
     }
