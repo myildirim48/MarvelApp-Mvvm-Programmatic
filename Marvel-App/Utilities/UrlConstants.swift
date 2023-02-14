@@ -29,7 +29,7 @@ let baseHost          : String = "gateway.marvel.com"
 
 enum urlPaths {
    static let characters        : String = "/v1/public/characters"
-    static let comics           : String = "/v1/public/characters"
+    static let comics           : String = "/v1/public/comics"
 }
 
 

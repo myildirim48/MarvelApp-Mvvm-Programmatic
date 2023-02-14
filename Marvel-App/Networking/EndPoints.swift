@@ -7,11 +7,11 @@
 
 import UIKit
 
-struct EndPointsStruct {
+struct EndPoints {
     let path: String
     var queryItems: [URLQueryItem]
 }
-extension EndPointsStruct {
+extension EndPoints {
     
     var url: URL? {
         var components = URLComponents()
@@ -30,25 +30,13 @@ extension EndPointsStruct {
                 URLQueryItem(name: urlParams.offset, value:String(offset))]
     }
     
-    static func charactersUrl(offset: Int) -> EndPointsStruct {
-        return EndPointsStruct(path: urlPaths.characters, queryItems: EndPointsStruct.urlQueryBase(with: offset))
+    static func charactersUrl(offset: Int) -> EndPoints {
+        return EndPoints(path: urlPaths.characters, queryItems: EndPoints.urlQueryBase(with: offset))
     }
     
     //Comics Url
-    static func comicsUrl(offset:Int) -> EndPointsStruct {
-        return EndPointsStruct(path: urlPaths.comics, queryItems: EndPointsStruct.urlQueryBase(with: offset))
+    static func comicsUrl(offset:Int) -> EndPoints {
+        return EndPoints(path: urlPaths.comics, queryItems: EndPoints.urlQueryBase(with: offset))
     }
-}
-
-enum EndpointEnum {
-    //Character Url
-//    static func charactersUrl(offset: Int) -> EndPointsStruct {
-//        return EndPointsStruct(path: urlPaths.characters, queryItems: EndPointsStruct.urlQueryBase(with: offset))
-//    }
-//    
-//    //Comics Url
-//    static func comicsUrl(offset:Int) -> EndPointsStruct {
-//        return EndPointsStruct(path: urlPaths.comics, queryItems: EndPointsStruct.urlQueryBase(with: offset))
-//    }
 }
 

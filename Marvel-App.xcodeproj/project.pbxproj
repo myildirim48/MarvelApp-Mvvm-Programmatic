@@ -17,7 +17,7 @@
 		74D8AF8A2993C50C008D5B62 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF892993C50C008D5B62 /* String+Ext.swift */; };
 		74D8AF912993F861008D5B62 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF902993F861008D5B62 /* Characters.swift */; };
 		74D8AF9329942987008D5B62 /* UrlConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF9229942987008D5B62 /* UrlConstants.swift */; };
-		74D8AF95299429EA008D5B62 /* EndPointsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF94299429EA008D5B62 /* EndPointsStruct.swift */; };
+		74D8AF95299429EA008D5B62 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF94299429EA008D5B62 /* EndPoints.swift */; };
 		74D8AF9729943017008D5B62 /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF9629943017008D5B62 /* ErrorMessages.swift */; };
 		74D8AF9C2995120B008D5B62 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF9B2995120B008D5B62 /* LoadingVC.swift */; };
 		74D8AF9F29951737008D5B62 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF9E29951737008D5B62 /* TitleLabel.swift */; };
@@ -34,6 +34,8 @@
 		74D8AFBB29969B64008D5B62 /* MrButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBA29969B64008D5B62 /* MrButton.swift */; };
 		74D8AFBD29996421008D5B62 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBC29996421008D5B62 /* Comics.swift */; };
 		74D8AFBF299A351F008D5B62 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBE299A351F008D5B62 /* Thumbnail.swift */; };
+		74D8AFC1299BB242008D5B62 /* ComicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC0299BB242008D5B62 /* ComicsCell.swift */; };
+		74D8AFC3299BB3EE008D5B62 /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +51,7 @@
 		74D8AF892993C50C008D5B62 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		74D8AF902993F861008D5B62 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		74D8AF9229942987008D5B62 /* UrlConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConstants.swift; sourceTree = "<group>"; };
-		74D8AF94299429EA008D5B62 /* EndPointsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointsStruct.swift; sourceTree = "<group>"; };
+		74D8AF94299429EA008D5B62 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
 		74D8AF9629943017008D5B62 /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		74D8AF9B2995120B008D5B62 /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
 		74D8AF9E29951737008D5B62 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
@@ -66,6 +68,8 @@
 		74D8AFBA29969B64008D5B62 /* MrButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrButton.swift; sourceTree = "<group>"; };
 		74D8AFBC29996421008D5B62 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
 		74D8AFBE299A351F008D5B62 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		74D8AFC0299BB242008D5B62 /* ComicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCell.swift; sourceTree = "<group>"; };
+		74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				74D8AF812993BCD0008D5B62 /* NetworkManager.swift */,
-				74D8AF94299429EA008D5B62 /* EndPointsStruct.swift */,
+				74D8AF94299429EA008D5B62 /* EndPoints.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -214,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				74D8AFA3299518F5008D5B62 /* MainViewCell.swift */,
+				74D8AFC0299BB242008D5B62 /* ComicsCell.swift */,
+				74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74D8AFAB29953CA5008D5B62 /* UIView+Ext.swift in Sources */,
+				74D8AFC3299BB3EE008D5B62 /* BasicCell.swift in Sources */,
 				74D8AFA729951945008D5B62 /* ImageView.swift in Sources */,
 				74D8AFB22996983B008D5B62 /* UIViewController+Ext.swift in Sources */,
 				74D8AFBB29969B64008D5B62 /* MrButton.swift in Sources */,
@@ -328,7 +335,7 @@
 				74D8AFBD29996421008D5B62 /* Comics.swift in Sources */,
 				74D8AF8A2993C50C008D5B62 /* String+Ext.swift in Sources */,
 				74D8AFA92995197E008D5B62 /* Constans.swift in Sources */,
-				74D8AF95299429EA008D5B62 /* EndPointsStruct.swift in Sources */,
+				74D8AF95299429EA008D5B62 /* EndPoints.swift in Sources */,
 				74D8AF912993F861008D5B62 /* Characters.swift in Sources */,
 				74D8AF822993BCD0008D5B62 /* NetworkManager.swift in Sources */,
 				74D8AF702993BC66008D5B62 /*  MainVC.swift in Sources */,
@@ -339,6 +346,7 @@
 				74D8AFA129951806008D5B62 /* BodyLabel.swift in Sources */,
 				74D8AF872993BDB4008D5B62 /* TabbarController.swift in Sources */,
 				74D8AFBF299A351F008D5B62 /* Thumbnail.swift in Sources */,
+				74D8AFC1299BB242008D5B62 /* ComicsCell.swift in Sources */,
 				74D8AF9729943017008D5B62 /* ErrorMessages.swift in Sources */,
 				74D8AF9F29951737008D5B62 /* TitleLabel.swift in Sources */,
 				74D8AFB029968FE3008D5B62 /* UIHelper.swift in Sources */,

@@ -17,7 +17,7 @@ class NetworkManager {
         decoder.dateDecodingStrategy = .iso8601
     }
     
-    func getDataGeneric<T:Codable>(for request:EndPointsStruct, data:T.Type) async throws -> T {
+    func getDataGeneric<T:Codable>(for request:EndPoints, data:T.Type) async throws -> T {
         let url = request.url
         print(url!)
         guard let url = url else {
