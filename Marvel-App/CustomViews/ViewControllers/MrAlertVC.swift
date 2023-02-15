@@ -11,7 +11,7 @@ class MrAlertVC: UIViewController  {
     
     let containerView = AlertContainerView()
     let titleLabel = TitleLabel(textAligment: .center, fontSize: 20)
-    let messageLabel = BodyLabel(textAligment: .center)
+    let messageLabel = BodyLabel(textAligment: .center, font: 15)
     let actionButton = MrButton(color: .systemRed, title: "Ok", systemImageName: SFSymbols.checkMark)
     
     var alertTitle:String?

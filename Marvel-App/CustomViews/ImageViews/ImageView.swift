@@ -21,7 +21,7 @@ class ImageView: UIImageView {
     }
     
     private func configure() {
-        layer.cornerRadius = 10
+//        layer.cornerRadius = 10
         clipsToBounds = true
 //        image = placeHolderImage
         translatesAutoresizingMaskIntoConstraints = false
