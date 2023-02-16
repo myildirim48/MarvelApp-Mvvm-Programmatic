@@ -16,9 +16,10 @@ class BodyLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(textAligment: NSTextAlignment) {
+    convenience init(textAligment: NSTextAlignment,font: CGFloat) {
         self.init(frame: .zero)
         self.textAlignment = textAligment
+        self.font = UIFont.systemFont(ofSize: font ,weight: .light)
     }
     
     private func configure() {

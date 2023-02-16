@@ -19,7 +19,7 @@ class NetworkManager {
     
     func getDataGeneric<T:Codable>(for request:EndPoints, data:T.Type) async throws -> T {
         let url = request.url
-        
+        print(url!)
         guard let url = url else {
             throw marvelError.invalidUsername
         }

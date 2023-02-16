@@ -7,28 +7,28 @@
 
 import UIKit
 class LoadingVC: UIViewController {
-    fileprivate var containerView: UIView!
+     var loadingContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func showLoadingView() {
-        containerView = UIView(frame: view.bounds)
-        view.addSubview(containerView)
+        loadingContainerView = UIView(frame: view.bounds)
+        view.addSubview(loadingContainerView)
         
-        containerView.backgroundColor = .systemBackground
-        containerView.alpha = 0
+        loadingContainerView.backgroundColor = .systemBackground
+        loadingContainerView.alpha = 0
         
-        UIView.animate(withDuration: 0.25, delay: 0) { self.containerView.alpha = 0.8 }
+        UIView.animate(withDuration: 0.25, delay: 0) { self.loadingContainerView.alpha = 0.8 }
         
         let activityIndicator = UIActivityIndicatorView(style: .large)
-        containerView.addSubview(activityIndicator)
+        loadingContainerView.addSubview(activityIndicator)
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            activityIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+            activityIndicator.centerYAnchor.constraint(equalTo: loadingContainerView.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: loadingContainerView.centerXAnchor)
         ])
         
         activityIndicator.startAnimating()
@@ -36,8 +36,9 @@ class LoadingVC: UIViewController {
     
     func dissmisLoadingView(){
         DispatchQueue.main.async {
-            self.containerView.removeFromSuperview()
-            self.containerView = nil
+            self.loadingContainerView.removeFromSuperview()
+            self.loadingContainerView = nil
         }
+
     }
 }

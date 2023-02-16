@@ -18,9 +18,10 @@ let ts = Date().timeIntervalSince1970
 
 enum urlParams {
     static let apiKeyCons : String = "apikey"
-    static let page : String = "page"
+    static let offset : String = "offset"
     static let timeStamp : String = "ts"
     static let hash : String = "hash"
+    static let limit : String = "limit"
 }
 
 
@@ -29,6 +30,7 @@ let baseHost          : String = "gateway.marvel.com"
 
 enum urlPaths {
    static let characters        : String = "/v1/public/characters"
+    static let comics           : String = "/v1/public/comics"
 }
 
 

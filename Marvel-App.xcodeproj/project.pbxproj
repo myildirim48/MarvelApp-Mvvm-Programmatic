@@ -22,16 +22,20 @@
 		74D8AF9C2995120B008D5B62 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF9B2995120B008D5B62 /* LoadingVC.swift */; };
 		74D8AF9F29951737008D5B62 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF9E29951737008D5B62 /* TitleLabel.swift */; };
 		74D8AFA129951806008D5B62 /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFA029951806008D5B62 /* BodyLabel.swift */; };
-		74D8AFA4299518F5008D5B62 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFA3299518F5008D5B62 /* MainViewCell.swift */; };
+		74D8AFA4299518F5008D5B62 /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFA3299518F5008D5B62 /* HeroCell.swift */; };
 		74D8AFA729951945008D5B62 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFA629951945008D5B62 /* ImageView.swift */; };
 		74D8AFA92995197E008D5B62 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFA82995197E008D5B62 /* Constans.swift */; };
 		74D8AFAB29953CA5008D5B62 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFAA29953CA5008D5B62 /* UIView+Ext.swift */; };
-		74D8AFAE29966A98008D5B62 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFAD29966A98008D5B62 /* MainViewModel.swift */; };
 		74D8AFB029968FE3008D5B62 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFAF29968FE3008D5B62 /* UIHelper.swift */; };
 		74D8AFB22996983B008D5B62 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFB12996983B008D5B62 /* UIViewController+Ext.swift */; };
 		74D8AFB429969A23008D5B62 /* MrAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFB329969A23008D5B62 /* MrAlertVC.swift */; };
 		74D8AFB829969A94008D5B62 /* AlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFB729969A94008D5B62 /* AlertContainerView.swift */; };
 		74D8AFBB29969B64008D5B62 /* MrButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBA29969B64008D5B62 /* MrButton.swift */; };
+		74D8AFBD29996421008D5B62 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBC29996421008D5B62 /* Comics.swift */; };
+		74D8AFBF299A351F008D5B62 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFBE299A351F008D5B62 /* Thumbnail.swift */; };
+		74D8AFC1299BB242008D5B62 /* ComicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC0299BB242008D5B62 /* ComicsCell.swift */; };
+		74D8AFC3299BB3EE008D5B62 /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */; };
+		74D8AFC5299D20BA008D5B62 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC4299D20BA008D5B62 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,16 +56,20 @@
 		74D8AF9B2995120B008D5B62 /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
 		74D8AF9E29951737008D5B62 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		74D8AFA029951806008D5B62 /* BodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
-		74D8AFA3299518F5008D5B62 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		74D8AFA3299518F5008D5B62 /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
 		74D8AFA629951945008D5B62 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		74D8AFA82995197E008D5B62 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
 		74D8AFAA29953CA5008D5B62 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		74D8AFAD29966A98008D5B62 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		74D8AFAF29968FE3008D5B62 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		74D8AFB12996983B008D5B62 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		74D8AFB329969A23008D5B62 /* MrAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrAlertVC.swift; sourceTree = "<group>"; };
 		74D8AFB729969A94008D5B62 /* AlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContainerView.swift; sourceTree = "<group>"; };
 		74D8AFBA29969B64008D5B62 /* MrButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MrButton.swift; sourceTree = "<group>"; };
+		74D8AFBC29996421008D5B62 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
+		74D8AFBE299A351F008D5B62 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		74D8AFC0299BB242008D5B62 /* ComicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCell.swift; sourceTree = "<group>"; };
+		74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
+		74D8AFC4299D20BA008D5B62 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +108,6 @@
 				74D8AF7F2993BCAE008D5B62 /* Support */,
 				74D8AF842993BCE9008D5B62 /* CustomViews */,
 				74D8AF832993BCE3008D5B62 /* Screens */,
-				74D8AFAC29966A88008D5B62 /* ViewModel */,
 				74D8AF8B2993C5C5008D5B62 /* Extensions */,
 				74D8AF792993BC67008D5B62 /* Info.plist */,
 			);
@@ -164,6 +171,7 @@
 				74D8AF9629943017008D5B62 /* ErrorMessages.swift */,
 				74D8AFA82995197E008D5B62 /* Constans.swift */,
 				74D8AFAF29968FE3008D5B62 /* UIHelper.swift */,
+				74D8AFC4299D20BA008D5B62 /* Theme.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -182,6 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				74D8AF902993F861008D5B62 /* Characters.swift */,
+				74D8AFBC29996421008D5B62 /* Comics.swift */,
+				74D8AFBE299A351F008D5B62 /* Thumbnail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,7 +217,9 @@
 		74D8AFA2299518C8008D5B62 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				74D8AFA3299518F5008D5B62 /* MainViewCell.swift */,
+				74D8AFA3299518F5008D5B62 /* HeroCell.swift */,
+				74D8AFC0299BB242008D5B62 /* ComicsCell.swift */,
+				74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -218,14 +230,6 @@
 				74D8AFA629951945008D5B62 /* ImageView.swift */,
 			);
 			path = ImageViews;
-			sourceTree = "<group>";
-		};
-		74D8AFAC29966A88008D5B62 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				74D8AFAD29966A98008D5B62 /* MainViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		74D8AFB629969A88008D5B62 /* Views */ = {
@@ -315,28 +319,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				74D8AFAB29953CA5008D5B62 /* UIView+Ext.swift in Sources */,
+				74D8AFC3299BB3EE008D5B62 /* BasicCell.swift in Sources */,
 				74D8AFA729951945008D5B62 /* ImageView.swift in Sources */,
 				74D8AFB22996983B008D5B62 /* UIViewController+Ext.swift in Sources */,
 				74D8AFBB29969B64008D5B62 /* MrButton.swift in Sources */,
 				74D8AFB429969A23008D5B62 /* MrAlertVC.swift in Sources */,
+				74D8AFBD29996421008D5B62 /* Comics.swift in Sources */,
 				74D8AF8A2993C50C008D5B62 /* String+Ext.swift in Sources */,
 				74D8AFA92995197E008D5B62 /* Constans.swift in Sources */,
 				74D8AF95299429EA008D5B62 /* EndPoints.swift in Sources */,
 				74D8AF912993F861008D5B62 /* Characters.swift in Sources */,
 				74D8AF822993BCD0008D5B62 /* NetworkManager.swift in Sources */,
 				74D8AF702993BC66008D5B62 /*  MainVC.swift in Sources */,
-				74D8AFA4299518F5008D5B62 /* MainViewCell.swift in Sources */,
+				74D8AFC5299D20BA008D5B62 /* Theme.swift in Sources */,
+				74D8AFA4299518F5008D5B62 /* HeroCell.swift in Sources */,
 				74D8AF6C2993BC66008D5B62 /* AppDelegate.swift in Sources */,
 				74D8AF9329942987008D5B62 /* UrlConstants.swift in Sources */,
 				74D8AFB829969A94008D5B62 /* AlertContainerView.swift in Sources */,
 				74D8AFA129951806008D5B62 /* BodyLabel.swift in Sources */,
 				74D8AF872993BDB4008D5B62 /* TabbarController.swift in Sources */,
+				74D8AFBF299A351F008D5B62 /* Thumbnail.swift in Sources */,
+				74D8AFC1299BB242008D5B62 /* ComicsCell.swift in Sources */,
 				74D8AF9729943017008D5B62 /* ErrorMessages.swift in Sources */,
 				74D8AF9F29951737008D5B62 /* TitleLabel.swift in Sources */,
 				74D8AFB029968FE3008D5B62 /* UIHelper.swift in Sources */,
 				74D8AF6E2993BC66008D5B62 /* SceneDelegate.swift in Sources */,
 				74D8AF9C2995120B008D5B62 /* LoadingVC.swift in Sources */,
-				74D8AFAE29966A98008D5B62 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

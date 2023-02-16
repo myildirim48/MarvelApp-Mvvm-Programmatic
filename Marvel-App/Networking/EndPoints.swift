@@ -23,14 +23,21 @@ extension EndPoints {
     }
     
     //Base with ts,api,hash,page
-    static func urlQueryBase(with page: Int) -> [URLQueryItem]{
+    static func urlQueryBase(with offset: Int) -> [URLQueryItem]{
         return [URLQueryItem(name: urlParams.timeStamp, value: String(ts)),
                 URLQueryItem(name: urlParams.apiKeyCons, value: apiKey),
-                URLQueryItem(name: urlParams.hash, value: md5Creator())]
+                URLQueryItem(name: urlParams.hash, value: md5Creator()),
+                URLQueryItem(name: urlParams.offset, value:String(offset)),
+                URLQueryItem(name: urlParams.limit, value: "20")]
     }
     
-    //Character Url
-    static func charactersUrl(page: Int) -> EndPoints {
-        return EndPoints(path: urlPaths.characters, queryItems: urlQueryBase(with: page))
+    static func charactersUrl(offset: Int) -> EndPoints {
+        return EndPoints(path: urlPaths.characters, queryItems: EndPoints.urlQueryBase(with: offset))
+    }
+    
+    //Comics Url
+    static func comicsUrl(offset:Int) -> EndPoints {
+        return EndPoints(path: urlPaths.comics, queryItems: EndPoints.urlQueryBase(with: offset))
     }
 }
+

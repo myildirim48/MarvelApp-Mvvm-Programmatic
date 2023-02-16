@@ -21,20 +21,31 @@ class ImageView: UIImageView {
     }
     
     private func configure() {
-        layer.cornerRadius = 10
+
         clipsToBounds = true
-//        image = placeHolderImage
+        image = placeHolderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    fileprivate let blacklisIdentifiers: [String] = [
+        "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
+        "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708"
+    ]
+    
     func downloadImage(fromUrl url: String) {
         //Here is adds .jpg and http's' for security url
-        var newUrls = url + ".jpg"
-        let i = newUrls.index(newUrls.startIndex, offsetBy: 4)
-        newUrls.insert("s", at: i)
-        
-        Task {
-            image = await NetworkManager.shared.downloadImage(from:newUrls) ?? placeHolderImage
+        if blacklisIdentifiers.contains(url){
+            image = placeHolderImage
+        } else {
+            var newUrls = url + ".jpg"
+            let i = newUrls.index(newUrls.startIndex, offsetBy: 4)
+            newUrls.insert("s", at: i)
+            
+            Task {
+                image = await NetworkManager.shared.downloadImage(from:newUrls) ?? placeHolderImage
+            }
+            return
         }
+      
     }
 }
