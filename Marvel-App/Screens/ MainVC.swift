@@ -14,17 +14,17 @@ enum Section {
 
 class MainVC: LoadingVC {
     
+    private var searchedChar: CharacterResponse?
     private var characterArr:   [CharacterModel] = []
     private var filteredCharacters : [CharacterModel] = []
     
     private var pageNumChar = 0
     private var offset = 0
-    
-    private var hasMoreDataForChar = true
-    private var hasMoreDataForComics = true
-    
+    private var timer : Timer?
     private var isSearching = false
     private var isLoadingMoreData = false
+    private var hasMoreData = false
+    private var searchText = ""
     
     private var collectionView : UICollectionView!
     private var dataSource : UICollectionViewDiffableDataSource<Section,CharacterModel>!
@@ -34,6 +34,7 @@ class MainVC: LoadingVC {
         configureCollectionView()
         getCharacters(offset: offset)
         configureDataSource()
+        configureSearchController()
     }
     
     private func configureCollectionView(){
@@ -55,13 +56,13 @@ class MainVC: LoadingVC {
     }
     
     private func getCharacters(offset: Int){
-        if loadingContainerView == nil { showLoadingView() }
+        showLoadingView()
         isLoadingMoreData = true
         Task{
             do {
                 let charFromApi = try await NetworkManager.shared.getDataGeneric(for: EndPoints.charactersUrl(offset: offset), data: CharacterResponse.self)
-                updateUI(char: charFromApi)
-                if loadingContainerView != nil { dissmisLoadingView() }
+                updateUI(with: charFromApi)
+                dissmisLoadingView()
                 isLoadingMoreData = false
             }catch{
                 if let err = error as? marvelError{
@@ -74,16 +75,26 @@ class MainVC: LoadingVC {
         }
     }
     
-//    private func createLayout() -> UICollectionViewCompositionalLayout {
-//        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-//            if sectionIndex == 0 {
-//                return UIHelper.layoutSection(fractionalWith: 0.5, fractionalHeight: 0.25)
-//            }else {
-//                return UIHelper.layoutSection(fractionalWith: 0.8, fractionalHeight: 0.50)
-//            }
-//        }
-//        return layout
-//    }
+    //    private func createLayout() -> UICollectionViewCompositionalLayout {
+    //        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+    //            if sectionIndex == 0 {
+    //                return UIHelper.layoutSection(fractionalWith: 0.5, fractionalHeight: 0.25)
+    //            }else {
+    //                return UIHelper.layoutSection(fractionalWith: 0.8, fractionalHeight: 0.50)
+    //            }
+    //        }
+    //        return layout
+    //    }
+
+    private func updateUI(with char: CharacterResponse){
+        if characterArr.count == char.data.total {
+            hasMoreData = false
+            return } //For pagination
+        hasMoreData = true
+        self.characterArr.append(contentsOf: char.data.results)//For pagination
+        updateChars(char: characterArr)
+    }
+    
     
     private func updateChars(char:[CharacterModel]){
         var snapShot = NSDiffableDataSourceSnapshot<Section,CharacterModel>()
@@ -94,27 +105,90 @@ class MainVC: LoadingVC {
         }
     }
     
-    private func updateUI(char: CharacterResponse){
-        if characterArr.count == char.data.total { self.hasMoreDataForChar = false } //For pagination
-        self.characterArr.append(contentsOf: char.data.results)//For pagination
-        updateChars(char: characterArr)
+    
+    private func configureSearchController(){
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search for a character.."
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
+    
+    private func searchChars(searchText:String,offset:Int){
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+            guard let self = self else { return }
+            Task {
+                self.showLoadingView()
+                let searchedData = try await NetworkManager.shared.getDataGeneric(for: EndPoints.characterSearch(searchText: searchText, offset: offset), data: CharacterResponse.self)
+                if self.loadingContainerView != nil { self.dissmisLoadingView() }
+                
+                if searchedData.data.count >= self.filteredCharacters.count && searchedData.data.count > 0 {
+                    self.filteredCharacters  = searchedData.data.results
+                    self.updateChars(char: self.filteredCharacters)
+                }else {
+                    self.presentMrAlert(title: "No Search Result", message: "No search Result for \(searchText)", buttonTitle: "Ok")
+                    self.updateChars(char: [])
+                }
+            }
+        })
     }
 }
 extension MainVC:UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print(indexPath.item,characterArr.count)
-        if indexPath.item >= characterArr.count - 4 {
-            guard hasMoreDataForChar,!isLoadingMoreData else { return }
-            pageNumChar += 1
-            offset = pageNumChar * 20
-            getCharacters(offset: offset)
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let hegiht = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - hegiht - 100 && hasMoreData{
+            if !isSearching {
+                guard !isSearching,!isLoadingMoreData else { return }
+                pageNumChar += 1
+                offset = pageNumChar * 20
+                getCharacters(offset: offset)
+            } else if isSearching && hasMoreData {
+                guard !isLoadingMoreData else { return }
+            }
+
+      
         }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        print(indexPath.row,characterArr.count,searchedChar?.data.results.count)
+//        if indexPath.row >= characterArr.count - 4 && isSearching == false{
+//            guard !isLoadingMoreData else { return }
+//            pageNumChar += 1
+//            offset = pageNumChar * 20
+//            getCharacters(offset: offset)
+//        }else if indexPath.row >= searchedChar?.data.results.count ?? 0 && isSearching == true {
+//            guard !isLoadingMoreData else { return }
+//            pageNumChar += 1
+//            offset = pageNumChar * 20
+//            searchChars(searchText: searchText,offset: offset)
+//        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO
     }
+}
+
+extension MainVC : UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            updateChars(char: characterArr)
+            isSearching = false
+            return
+        }
+        isSearching = true
+        searchText = filter
+        searchChars(searchText: filter,offset: 0)
+  
+    }
+    
+    
 }
 
 

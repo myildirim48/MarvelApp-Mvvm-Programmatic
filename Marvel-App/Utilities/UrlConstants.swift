@@ -22,6 +22,7 @@ enum urlParams {
     static let timeStamp : String = "ts"
     static let hash : String = "hash"
     static let limit : String = "limit"
+    static let forCharacterSearch : String = "nameStartsWith"
 }
 
 
