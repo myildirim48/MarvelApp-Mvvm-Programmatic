@@ -11,10 +11,10 @@ class HeroCell: UICollectionViewCell {
     
     static let reuseID = "hero-cell-identifier"
 
-    let imageView = UIImageView()
+    let imageView = ImageView(frame: .zero)
     let nameLabel = UILabel()
     let descriptionLabel = UILabel()
-    @objc let favoritesButton = UIButton()
+    let favoritesButton = UIButton()
     
     
     override init(frame: CGRect) {
@@ -28,6 +28,23 @@ class HeroCell: UICollectionViewCell {
     
     @objc func favoriteButtonTapped(_ sender: UIButton){
         
+    }
+    var character: CharacterModel? {
+        didSet {
+            update()
+        }
+    }
+    
+    private func update() {
+        guard let character = character else {
+            nameLabel.text = nil
+            descriptionLabel.text = nil
+            return
+        }
+
+        nameLabel.text = character.name
+        descriptionLabel.text = character.description.isEmpty ? unavailableDescription : character.description
+        imageView.downloadImage(fromUrl: character.thumbnail.path)
     }
 
     //MARK: -Private
@@ -55,7 +72,7 @@ class HeroCell: UICollectionViewCell {
         nameLabel.numberOfLines = 1
         nameLabel.textAlignment = .left
         
-        descriptionLabel.numberOfLines = 0
+        descriptionLabel.numberOfLines = 4
         descriptionLabel.textColor = .secondaryLabel
         descriptionLabel.textAlignment = .left
         descriptionLabel.lineBreakMode = .byTruncatingTail
@@ -70,29 +87,25 @@ class HeroCell: UICollectionViewCell {
         let innerSpacing = CGFloat(10)
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: topAnchor,constant: outerSpacing),
+            nameLabel.topAnchor.constraint(equalTo: topAnchor,constant: innerSpacing),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: outerSpacing),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -outerSpacing),
-            nameLabel.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: -innerSpacing),
+            nameLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -outerSpacing),
+            nameLabel.heightAnchor.constraint(equalToConstant: 40),
             
-            imageView.topAnchor.constraint(equalTo: descriptionLabel.topAnchor),
+            imageView.topAnchor.constraint(equalTo: nameLabel.topAnchor,constant: innerSpacing),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -outerSpacing),
-            imageView.widthAnchor.constraint(equalToConstant: 92.0),
-            imageView.heightAnchor.constraint(equalToConstant: 92.0),
+            imageView.widthAnchor.constraint(equalToConstant: 105),
+            imageView.heightAnchor.constraint(equalToConstant: 105),
             
             descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: innerSpacing),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: outerSpacing),
             descriptionLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor,constant: -innerSpacing),
-            descriptionLabel.bottomAnchor.constraint(equalTo: favoritesButton.topAnchor,constant: -innerSpacing),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: favoritesButton.topAnchor, constant: -outerSpacing ),
             
-            favoritesButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor,constant: -innerSpacing),
             favoritesButton.leadingAnchor.constraint(equalTo: leadingAnchor,constant: outerSpacing),
-            favoritesButton.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -outerSpacing),
             favoritesButton.widthAnchor.constraint(equalToConstant: 30),
             favoritesButton.heightAnchor.constraint(equalToConstant: 28)
         ])
-        
-        
     }
 
 }

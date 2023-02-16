@@ -27,7 +27,8 @@ extension EndPoints {
         return [URLQueryItem(name: urlParams.timeStamp, value: String(ts)),
                 URLQueryItem(name: urlParams.apiKeyCons, value: apiKey),
                 URLQueryItem(name: urlParams.hash, value: md5Creator()),
-                URLQueryItem(name: urlParams.offset, value:String(offset))]
+                URLQueryItem(name: urlParams.offset, value:String(offset)),
+                URLQueryItem(name: urlParams.limit, value: "20")]
     }
     
     static func charactersUrl(offset: Int) -> EndPoints {

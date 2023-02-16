@@ -21,6 +21,7 @@ enum urlParams {
     static let offset : String = "offset"
     static let timeStamp : String = "ts"
     static let hash : String = "hash"
+    static let limit : String = "limit"
 }
 
 

@@ -24,7 +24,8 @@ enum UIHelper {
         }
     }
     
-    static func layoutSection( fractionalWith:CGFloat,fractionalHeight:CGFloat) -> NSCollectionLayoutSection {
+    static func layoutSection(fractionalWith:CGFloat,fractionalHeight:CGFloat) -> UICollectionViewCompositionalLayout {
+        
         let itemSize = NSCollectionLayoutSize(widthDimension:  .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
@@ -33,8 +34,9 @@ enum UIHelper {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize:  groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
         
-        return section
+        
+        return UICollectionViewCompositionalLayout(section: section)
+        
     }
 }
