@@ -36,6 +36,7 @@
 		74D8AFC1299BB242008D5B62 /* ComicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC0299BB242008D5B62 /* ComicsCell.swift */; };
 		74D8AFC3299BB3EE008D5B62 /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */; };
 		74D8AFC5299D20BA008D5B62 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFC4299D20BA008D5B62 /* Theme.swift */; };
+		74D8AFF8299E81D3008D5B62 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AFF7299E81D3008D5B62 /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		74D8AFC0299BB242008D5B62 /* ComicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCell.swift; sourceTree = "<group>"; };
 		74D8AFC2299BB3EE008D5B62 /* BasicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
 		74D8AFC4299D20BA008D5B62 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		74D8AFF7299E81D3008D5B62 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				74D8AF6F2993BC66008D5B62 /*  MainVC.swift */,
+				74D8AFF7299E81D3008D5B62 /* DetailVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				74D8AF912993F861008D5B62 /* Characters.swift in Sources */,
 				74D8AF822993BCD0008D5B62 /* NetworkManager.swift in Sources */,
 				74D8AF702993BC66008D5B62 /*  MainVC.swift in Sources */,
+				74D8AFF8299E81D3008D5B62 /* DetailVC.swift in Sources */,
 				74D8AFC5299D20BA008D5B62 /* Theme.swift in Sources */,
 				74D8AFA4299518F5008D5B62 /* HeroCell.swift in Sources */,
 				74D8AF6C2993BC66008D5B62 /* AppDelegate.swift in Sources */,

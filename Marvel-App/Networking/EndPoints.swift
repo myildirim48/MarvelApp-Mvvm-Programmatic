@@ -31,8 +31,17 @@ extension EndPoints {
                 URLQueryItem(name: urlParams.limit, value: "20")]
     }
     
+    static func charSearchUrl(for searchText: String, offset:Int = 0) -> [URLQueryItem] {
+        return urlQueryBase(with: offset) + [URLQueryItem(name: urlParams.forCharacterSearch, value: searchText)]
+    }
+    
+    //Character Urls
     static func charactersUrl(offset: Int) -> EndPoints {
         return EndPoints(path: urlPaths.characters, queryItems: EndPoints.urlQueryBase(with: offset))
+    }
+    
+    static func characterSearch(searchText: String,offset:Int) -> EndPoints {
+        return EndPoints(path: urlPaths.characters, queryItems: EndPoints.charSearchUrl(for: searchText,offset: offset))
     }
     
     //Comics Url
