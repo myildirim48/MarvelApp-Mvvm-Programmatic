@@ -14,15 +14,19 @@ class TabbarController: UITabBarController {
         let tabbarApperance = UITabBar.appearance()
         tabbarApperance.tintColor = .systemRed
         tabbarApperance.backgroundColor = .systemGray6
-        viewControllers = [createMainVC()]
+        viewControllers = [createTabbarItem(view: MainVC() , title: "Main", itemImage: TabbarImgName.mainVCImage),
+                           createTabbarItem(view: FavoriteVC(), title: "Favorites", itemImage: TabbarImgName.favoriteVCImage)]
     }
     
-    func createMainVC() -> UINavigationController{
-        let mainVC = MainVC()
+    func createTabbarItem(view: UIViewController ,title:String, itemImage: String) -> UINavigationController{
         
-        mainVC.title = "Main"
-        mainVC.tabBarItem.image = UIImage(systemName: "book.circle")
-        mainVC.tabBarItem.title = "Main"
-        return UINavigationController(rootViewController: mainVC)
+        
+        let navController = view
+        
+        navController.title = title
+        navController.tabBarItem.image = UIImage(systemName: itemImage)
+        navController.tabBarItem.title = title
+        return UINavigationController(rootViewController: navController)
+        
     }
 }

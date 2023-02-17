@@ -14,9 +14,11 @@ enum Section {
 
 class MainVC: LoadingVC {
     
-    private var searchedChar: CharacterResponse?
+    private var searchedChar: NetworkResponse<CharacterModel>?
     private var characterArr:   [CharacterModel] = []
     private var filteredCharacters : [CharacterModel] = []
+    
+    private typealias charResponse = NetworkResponse<CharacterModel>
     
     private var pageNumChar = 0
     private var offset = 0
@@ -60,7 +62,7 @@ class MainVC: LoadingVC {
         isLoadingMoreData = true
         Task{
             do {
-                let charFromApi = try await NetworkManager.shared.getDataGeneric(for: EndPoints.charactersUrl(offset: offset), data: CharacterResponse.self)
+                let charFromApi = try await NetworkManager.shared.getDataGeneric(for: EndPoints.charactersUrl(offset: offset), data: charResponse.self)
                 updateUI(with: charFromApi)
                 dissmisLoadingView()
                 isLoadingMoreData = false
@@ -86,7 +88,7 @@ class MainVC: LoadingVC {
     //        return layout
     //    }
 
-    private func updateUI(with char: CharacterResponse){
+    private func updateUI(with char: charResponse){
         if characterArr.count == char.data.total {
             hasMoreData = false
             return } //For pagination
@@ -120,7 +122,7 @@ class MainVC: LoadingVC {
             guard let self = self else { return }
             Task {
                 self.showLoadingView()
-                let searchedData = try await NetworkManager.shared.getDataGeneric(for: EndPoints.characterSearch(searchText: searchText, offset: offset), data: CharacterResponse.self)
+                let searchedData = try await NetworkManager.shared.getDataGeneric(for: EndPoints.characterSearch(searchText: searchText, offset: offset), data: charResponse.self)
                 if self.loadingContainerView != nil { self.dissmisLoadingView() }
                 
                 if searchedData.data.count >= self.filteredCharacters.count && searchedData.data.count > 0 {

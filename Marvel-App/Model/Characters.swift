@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct CharacterResponse: Codable{
-    let data: CharacterData
-}
-
-// MARK: - DataClass
-struct CharacterData: Codable{
-    let total, count: Int
-    let results: [CharacterModel]
-}
+//struct CharacterResponse: Codable{
+//    let data: CharacterData
+//}
+//
+//// MARK: - DataClass
+//struct CharacterData: Codable{
+//    let total, count: Int
+//    let results: [CharacterModel]
+//}
 
 // MARK: - Result
-struct CharacterModel: Codable,Hashable {
+struct CharacterModel: Codable, Hashable {
     let id: Int
     let name, description: String
     let thumbnail: Thumbnail

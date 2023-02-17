@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		744C5C79299EBFFE00C0318F /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744C5C78299EBFFE00C0318F /* FavoriteVC.swift */; };
+		744C5C7B299EEE9000C0318F /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744C5C7A299EEE9000C0318F /* NetworkResponse.swift */; };
 		74D8AF6C2993BC66008D5B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6B2993BC66008D5B62 /* AppDelegate.swift */; };
 		74D8AF6E2993BC66008D5B62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6D2993BC66008D5B62 /* SceneDelegate.swift */; };
 		74D8AF702993BC66008D5B62 /*  MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6F2993BC66008D5B62 /*  MainVC.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		744C5C78299EBFFE00C0318F /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
+		744C5C7A299EEE9000C0318F /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		74D8AF682993BC66008D5B62 /* Marvel-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D8AF6B2993BC66008D5B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74D8AF6D2993BC66008D5B62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			children = (
 				74D8AF6F2993BC66008D5B62 /*  MainVC.swift */,
 				74D8AFF7299E81D3008D5B62 /* DetailVC.swift */,
+				744C5C78299EBFFE00C0318F /* FavoriteVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				74D8AF902993F861008D5B62 /* Characters.swift */,
 				74D8AFBC29996421008D5B62 /* Comics.swift */,
 				74D8AFBE299A351F008D5B62 /* Thumbnail.swift */,
+				744C5C7A299EEE9000C0318F /* NetworkResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74D8AFAB29953CA5008D5B62 /* UIView+Ext.swift in Sources */,
+				744C5C79299EBFFE00C0318F /* FavoriteVC.swift in Sources */,
 				74D8AFC3299BB3EE008D5B62 /* BasicCell.swift in Sources */,
 				74D8AFA729951945008D5B62 /* ImageView.swift in Sources */,
 				74D8AFB22996983B008D5B62 /* UIViewController+Ext.swift in Sources */,
@@ -331,6 +338,7 @@
 				74D8AF8A2993C50C008D5B62 /* String+Ext.swift in Sources */,
 				74D8AFA92995197E008D5B62 /* Constans.swift in Sources */,
 				74D8AF95299429EA008D5B62 /* EndPoints.swift in Sources */,
+				744C5C7B299EEE9000C0318F /* NetworkResponse.swift in Sources */,
 				74D8AF912993F861008D5B62 /* Characters.swift in Sources */,
 				74D8AF822993BCD0008D5B62 /* NetworkManager.swift in Sources */,
 				74D8AF702993BC66008D5B62 /*  MainVC.swift in Sources */,

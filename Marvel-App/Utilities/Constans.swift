@@ -12,6 +12,11 @@ enum Images {
     static let placeHolderHeroImage = UIImage(named: "place-holder-hero")
 }
 
+enum TabbarImgName {
+    static let mainVCImage = "book.circle"
+    static let favoriteVCImage = "star.circle.fill"
+}
+
 enum SFSymbols{
     static let checkMark = "checkmark.circle"
 }
