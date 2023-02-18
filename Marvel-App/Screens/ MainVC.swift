@@ -157,23 +157,16 @@ extension MainVC:UICollectionViewDelegate {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        print(indexPath.row,characterArr.count,searchedChar?.data.results.count)
-//        if indexPath.row >= characterArr.count - 4 && isSearching == false{
-//            guard !isLoadingMoreData else { return }
-//            pageNumChar += 1
-//            offset = pageNumChar * 20
-//            getCharacters(offset: offset)
-//        }else if indexPath.row >= searchedChar?.data.results.count ?? 0 && isSearching == true {
-//            guard !isLoadingMoreData else { return }
-//            pageNumChar += 1
-//            offset = pageNumChar * 20
-//            searchChars(searchText: searchText,offset: offset)
-//        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO
+        
+        let activeArray = isSearching ? filteredCharacters : characterArr
+        let character = activeArray[indexPath.item]
+        
+        let detailVC = DetailVC()
+        detailVC.charachter = character
+        
+        let navController = UINavigationController(rootViewController: detailVC)
+        present(navController, animated: true)
     }
 }
 

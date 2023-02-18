@@ -23,6 +23,7 @@ class ImageView: UIImageView {
     private func configure() {
 
         clipsToBounds = true
+        contentMode = .scaleToFill
         image = placeHolderImage
         translatesAutoresizingMaskIntoConstraints = false
     }

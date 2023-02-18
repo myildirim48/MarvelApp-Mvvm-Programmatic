@@ -15,14 +15,9 @@ struct Thumbnail: Codable, Hashable {
         return lhs.path == rhs.path && lhs.ext == rhs.ext
     }
     
-    
     enum CodingKeys: String, CodingKey {
         case path
         case ext = "extension"
-    }
-    
-    var fullUrlWithExt: String {
-        get { return path + "." + ext }
     }
 
 }

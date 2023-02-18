@@ -12,9 +12,10 @@ class HeroCell: UICollectionViewCell {
     static let reuseID = "hero-cell-identifier"
 
     let imageView = ImageView(frame: .zero)
-    let nameLabel = UILabel()
-    let descriptionLabel = UILabel()
-    let favoritesButton = UIButton()
+    let nameLabel = MrLabel(textAligment: .left
+                               , font: Theme.fonts.titleFont)
+    let descriptionLabel = MrLabel(textAligment: .left, font: Theme.fonts.desriptionFont)
+    let favoritesButton = FavoritesButton(frame: .zero)
     
     
     override init(frame: CGRect) {
@@ -27,7 +28,8 @@ class HeroCell: UICollectionViewCell {
     }
     
     @objc func favoriteButtonTapped(_ sender: UIButton){
-        
+
+        sender.isSelected = sender.isSelected == true ? false : true
     }
     var character: CharacterModel? {
         didSet {
@@ -49,32 +51,20 @@ class HeroCell: UICollectionViewCell {
 
     //MARK: -Private
     private func configure(){
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        favoritesButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleToFill
+  
         imageView.backgroundColor = Theme.colors.imageViewBackgroundColor
         imageView.layer.cornerRadius = 46.0
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.systemGray3.cgColor
         
+        
         favoritesButton.addTarget(self, action: #selector(self.favoriteButtonTapped(_:)), for: .touchUpInside)
-        favoritesButton.setImage(UIImage(systemName: "star"), for: .normal)
-        favoritesButton.setImage(UIImage(systemName: "star.fill"), for: .selected)
-        favoritesButton.tintColor = .systemOrange
-        favoritesButton.contentVerticalAlignment = .fill
-        favoritesButton.contentHorizontalAlignment = .fill
         
         nameLabel.font = Theme.fonts.titleFont
         nameLabel.numberOfLines = 1
-        nameLabel.textAlignment = .left
         
         descriptionLabel.numberOfLines = 4
         descriptionLabel.textColor = .secondaryLabel
-        descriptionLabel.textAlignment = .left
         descriptionLabel.lineBreakMode = .byTruncatingTail
         descriptionLabel.font = Theme.fonts.desriptionFont
         
@@ -103,8 +93,8 @@ class HeroCell: UICollectionViewCell {
             descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: favoritesButton.topAnchor, constant: -outerSpacing ),
             
             favoritesButton.leadingAnchor.constraint(equalTo: leadingAnchor,constant: outerSpacing),
-            favoritesButton.widthAnchor.constraint(equalToConstant: 30),
-            favoritesButton.heightAnchor.constraint(equalToConstant: 28)
+            favoritesButton.widthAnchor.constraint(equalToConstant: 40),
+            favoritesButton.heightAnchor.constraint(equalToConstant: 37)
         ])
     }
 

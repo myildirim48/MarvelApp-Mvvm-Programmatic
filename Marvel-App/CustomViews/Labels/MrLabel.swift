@@ -1,12 +1,12 @@
 //
-//  TitleLabel.swift
+//  MrLabel.swift
 //  Marvel-App
 //
 //  Created by YILDIRIM on 9.02.2023.
 //
 
 import UIKit
-class TitleLabel: UILabel {
+class MrLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -16,10 +16,10 @@ class TitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(textAligment: NSTextAlignment, fontSize: CGFloat) {
+    convenience init(textAligment: NSTextAlignment, font: UIFont) {
         self.init(frame: .zero)
         self.textAlignment = textAligment
-        self.font = UIFont.systemFont(ofSize: fontSize,weight: .bold)
+        self.font = font
     }
     
     private func configure() {
