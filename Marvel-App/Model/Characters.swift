@@ -18,12 +18,12 @@ import Foundation
 //}
 
 // MARK: - Result
-struct CharacterModel: Codable, Hashable {
+struct Characters: Codable, Hashable {
     let id: Int
     let name, description: String
     let thumbnail: Thumbnail
     
-    static func == (lhs: CharacterModel, rhs: CharacterModel) -> Bool {
+    static func == (lhs: Characters, rhs: Characters) -> Bool {
         return lhs.id == rhs.id &&
                lhs.name == rhs.name &&
                lhs.thumbnail == rhs.thumbnail &&

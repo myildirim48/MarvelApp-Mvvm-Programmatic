@@ -31,7 +31,7 @@ class HeroCell: UICollectionViewCell {
 
         sender.isSelected = sender.isSelected == true ? false : true
     }
-    var character: CharacterModel? {
+    var character: Characters? {
         didSet {
             update()
         }

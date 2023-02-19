@@ -28,7 +28,7 @@ class RequestLoader<T: Request>{
     let request : T
     let session : URLSession
     
-    init(request: T, session: URLSession) {
+    init(request: T, session: URLSession = .shared) {
         self.request = request
         self.session = session
     }

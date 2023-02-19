@@ -35,14 +35,14 @@ class Server {
     /// CharacterRequest for Characters
     /// - Parameter : Public Characters
     /// - Returns: Authenticated request with matching Character type
-    func characterRequest() throws -> CharacterRequest<CharacterModel>{
+    func characterRequest() throws -> CharacterRequest<Characters>{
         return CharacterRequest(baseURL, path: .base, auth: try authQueryItems())
     }
     
     /// CharacterRequest for Characters
     /// - Parameter id: String identifier of character
     /// - Returns: Authenticated request with matching Character type
-    func characterDetailRequest(id: Int) throws -> CharacterRequest<CharacterModel> {
+    func characterDetailRequest(id: Int) throws -> CharacterRequest<Characters> {
         return CharacterRequest(baseURL, path: .detail(id.toString()), auth: try authQueryItems())
     }
     /// CharacterRequest for Comics

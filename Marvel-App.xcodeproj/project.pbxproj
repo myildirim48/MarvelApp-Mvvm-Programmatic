@@ -45,6 +45,8 @@
 		74EB1D3729A26CE00019569D /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB1D3629A26CE00019569D /* Int+Ext.swift */; };
 		74EB1D3929A26E340019569D /* RequestLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB1D3829A26E340019569D /* RequestLoader.swift */; };
 		74EB1D3B29A270FD0019569D /* CharacterRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB1D3A29A270FD0019569D /* CharacterRequestManager.swift */; };
+		74EB1D3F29A2DB8A0019569D /* DataSource+SnapShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB1D3E29A2DB8A0019569D /* DataSource+SnapShot.swift */; };
+		74EB1D4229A2E30F0019569D /* UserFriendlyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB1D4129A2E30F0019569D /* UserFriendlyError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		74EB1D3629A26CE00019569D /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		74EB1D3829A26E340019569D /* RequestLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoader.swift; sourceTree = "<group>"; };
 		74EB1D3A29A270FD0019569D /* CharacterRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRequestManager.swift; sourceTree = "<group>"; };
+		74EB1D3E29A2DB8A0019569D /* DataSource+SnapShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSource+SnapShot.swift"; sourceTree = "<group>"; };
+		74EB1D4129A2E30F0019569D /* UserFriendlyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendlyError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +163,9 @@
 		74D8AF832993BCE3008D5B62 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				74D8AF6F2993BC66008D5B62 /*  MainVC.swift */,
-				74D8AFF7299E81D3008D5B62 /* DetailVC.swift */,
+				74EB1D3E29A2DB8A0019569D /* DataSource+SnapShot.swift */,
+				74EB1D3C29A2DB4F0019569D /* Main */,
+				74EB1D3D29A2DB5B0019569D /* Detail */,
 				744C5C78299EBFFE00C0318F /* FavoriteVC.swift */,
 			);
 			path = Screens;
@@ -215,6 +220,7 @@
 		74D8AF8F2993F5E9008D5B62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				74EB1D4029A2E3000019569D /* State */,
 				74D8AF902993F861008D5B62 /* Characters.swift */,
 				74D8AFBC29996421008D5B62 /* Comics.swift */,
 				74D8AFBE299A351F008D5B62 /* Thumbnail.swift */,
@@ -273,6 +279,30 @@
 				74EB1D2A29A11BC40019569D /* FavoritesButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		74EB1D3C29A2DB4F0019569D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				74D8AF6F2993BC66008D5B62 /*  MainVC.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		74EB1D3D29A2DB5B0019569D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				74D8AFF7299E81D3008D5B62 /* DetailVC.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		74EB1D4029A2E3000019569D /* State */ = {
+			isa = PBXGroup;
+			children = (
+				74EB1D4129A2E30F0019569D /* UserFriendlyError.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +387,7 @@
 				74D8AF8A2993C50C008D5B62 /* String+Ext.swift in Sources */,
 				74D8AFA92995197E008D5B62 /* Constans.swift in Sources */,
 				74D8AF95299429EA008D5B62 /* EndPoints.swift in Sources */,
+				74EB1D4229A2E30F0019569D /* UserFriendlyError.swift in Sources */,
 				744C5C7B299EEE9000C0318F /* NetworkResponse.swift in Sources */,
 				74EB1D2B29A11BC40019569D /* FavoritesButton.swift in Sources */,
 				74D8AF912993F861008D5B62 /* Characters.swift in Sources */,
@@ -365,6 +396,7 @@
 				74EB1D3B29A270FD0019569D /* CharacterRequestManager.swift in Sources */,
 				74D8AF702993BC66008D5B62 /*  MainVC.swift in Sources */,
 				74D8AFF8299E81D3008D5B62 /* DetailVC.swift in Sources */,
+				74EB1D3F29A2DB8A0019569D /* DataSource+SnapShot.swift in Sources */,
 				74D8AFC5299D20BA008D5B62 /* Theme.swift in Sources */,
 				74D8AFA4299518F5008D5B62 /* HeroCell.swift in Sources */,
 				74EB1D3929A26E340019569D /* RequestLoader.swift in Sources */,

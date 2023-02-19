@@ -14,3 +14,5 @@ enum marvelError:String,Error {
     case invalidData        = "The recieved from the server was invalid. Please try again."
     case alreadyInFavorites = "You have already favorited this user. You must Really like them!"
 }
+
+

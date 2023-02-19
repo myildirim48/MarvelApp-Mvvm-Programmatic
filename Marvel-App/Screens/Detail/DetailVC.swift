@@ -14,7 +14,7 @@ class DetailVC: LoadingVC {
     let descriptionLabel = MrLabel(textAligment: .left, font: Theme.fonts.desriptionFont)
     let favoritedButton = FavoritesButton(frame: .zero)
     
-    var charachter: CharacterModel? {
+    var charachter: Characters? {
         didSet {
             update()
         }
