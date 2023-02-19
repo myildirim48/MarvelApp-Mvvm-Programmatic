@@ -28,7 +28,19 @@ class DetailVC: LoadingVC {
     }
     
     @objc func favoriteButtonTapped(_ sender: UIButton){
-
+        Task{
+            do {
+                let charFromApi = try await NetworkManager.shared.getDataGeneric(for: EndPoints.charDetailDatas(charId: charachter?.id ?? 0), data: NetworkResponse<Comics>.self)
+                print(charFromApi)
+            }catch{
+                if let err = error as? marvelError{
+                    presentMrAlert(title: "Bad stuff happend", message: err.rawValue, buttonTitle: "Ok")
+                }else {
+                    presentDefaultError()
+                }
+                if loadingContainerView != nil { dissmisLoadingView() }
+            }
+        }
         sender.isSelected = sender.isSelected == true ? false : true
         
     }
@@ -89,6 +101,7 @@ class DetailVC: LoadingVC {
         ])
     }
     @objc func dismissVC() {
+
         dismiss(animated: true)
     }
     

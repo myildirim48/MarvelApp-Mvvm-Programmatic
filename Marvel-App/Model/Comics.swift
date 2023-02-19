@@ -7,23 +7,32 @@
 
 import Foundation
 
-// MARK: - Comics
-struct ComicsResponse: Codable,Hashable {
-    let data: ComicsData
-}
-
-// MARK: - DataClass
-struct ComicsData: Codable,Hashable {
-    let total, count: Int
-    let results: [ComicsResult]
-}
-
 // MARK: - Result
-struct ComicsResult: Codable,Hashable {
+struct Comics: Codable {
     let id: Int
     let title: String
     let description: String?
     let pageCount: Int
     let thumbnail: Thumbnail
 }
+
+extension Comics: Hashable, Equatable {
+    
+    static func == (lhs: Comics, rhs: Comics) -> Bool {
+        lhs.id == rhs.id && lhs.title == rhs.title
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+    }
+}
+
+extension Comics: Displayable {
+    func convert(type: Comics) -> DisplayableResource {
+        DisplayableResource(type: .comic, id: id, title: title, description: description, thumbnail: thumbnail)
+    }
+    
+}
+
 
