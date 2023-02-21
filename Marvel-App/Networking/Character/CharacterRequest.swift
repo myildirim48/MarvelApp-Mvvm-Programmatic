@@ -16,7 +16,7 @@ protocol Request {
 
 struct CharacterRequest<A:Codable>: Request{
     
-    typealias ResponseDataType = NetworkResponse<A>
+    typealias ResponseDataType = Response<DataContainer<A>>
     
     enum Path {
         case base

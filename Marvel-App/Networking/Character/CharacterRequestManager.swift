@@ -25,13 +25,10 @@ class CharacterRequestManager {
     }
     
     func configureResourceRequest(with characterId: Int) {
+        
         comicRequest = try? server.characterComicsRequest(id: characterId.toString())
         
         comicRequestLoader = RequestLoader(request: comicRequest)
-        
-    }
-    
-    func requestCharacterData(){
         
     }
     

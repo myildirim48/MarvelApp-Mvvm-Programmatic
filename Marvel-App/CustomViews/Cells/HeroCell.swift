@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class HeroCell: UICollectionViewCell {
     
     static let reuseID = "hero-cell-identifier"
@@ -28,7 +29,6 @@ class HeroCell: UICollectionViewCell {
     }
     
     @objc func favoriteButtonTapped(_ sender: UIButton){
-
         sender.isSelected = sender.isSelected == true ? false : true
     }
     var character: Characters? {
@@ -63,7 +63,7 @@ class HeroCell: UICollectionViewCell {
         nameLabel.font = Theme.fonts.titleFont
         nameLabel.numberOfLines = 1
         
-        descriptionLabel.numberOfLines = 4
+        descriptionLabel.numberOfLines = 3
         descriptionLabel.textColor = .secondaryLabel
         descriptionLabel.lineBreakMode = .byTruncatingTail
         descriptionLabel.font = Theme.fonts.desriptionFont
@@ -93,8 +93,8 @@ class HeroCell: UICollectionViewCell {
             descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: favoritesButton.topAnchor, constant: -outerSpacing ),
             
             favoritesButton.leadingAnchor.constraint(equalTo: leadingAnchor,constant: outerSpacing),
-            favoritesButton.widthAnchor.constraint(equalToConstant: 40),
-            favoritesButton.heightAnchor.constraint(equalToConstant: 37)
+            favoritesButton.widthAnchor.constraint(equalToConstant: 35),
+            favoritesButton.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 

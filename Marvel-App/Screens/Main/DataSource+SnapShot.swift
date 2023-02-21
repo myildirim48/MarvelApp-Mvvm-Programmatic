@@ -7,12 +7,12 @@
 
 import UIKit
 
-typealias MainSnapShot = NSDiffableDataSourceSnapshot<MainDataSource.Section, Characters>
+typealias HeroSnapShot = NSDiffableDataSourceSnapshot<HeroDataSource.Section, Characters>
 
-class MainDataSource: UICollectionViewDiffableDataSource<MainDataSource.Section, Characters> {
+class HeroDataSource: UICollectionViewDiffableDataSource<HeroDataSource.Section, Characters> {
     
     enum Section {
-    case main
+        case main
     }
 }
 
