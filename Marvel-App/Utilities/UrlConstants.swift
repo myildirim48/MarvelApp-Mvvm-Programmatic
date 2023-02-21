@@ -8,11 +8,11 @@
 import Foundation
 
 let privateKey =  "7f7a5a99ff2e78bd0bc2c9ca93644cc2aafaf484"
-let apiKey = "9d5431227aa300aefacef7b264100b0b"
-let ts = Date().timeIntervalSince1970
+let publicKey = "9d5431227aa300aefacef7b264100b0b"
+let timeStamp = Date().timeIntervalSince1970
 
  func md5Creator() -> String{
-    let md5 = "\(ts)"+privateKey+apiKey
+    let md5 = "\(timeStamp)"+privateKey+publicKey
     return md5.MD5()
 }
 
@@ -29,9 +29,28 @@ enum urlParams {
 let baseScheme        : String = "https"
 let baseHost          : String = "gateway.marvel.com"
 
-enum urlPaths {
-   static let characters        : String = "/v1/public/characters"
-    static let comics           : String = "/v1/public/comics"
+enum urlPat {
+    static let characters        : String = "/v1/public/characters"
+}
+
+enum UrlPath {
+    case base
+    case detail(String)
+    case comics(String)
+    case events(String)
+    case series(String)
+    case stories(String)
+    
+    var string: String {
+        switch self {
+        case .base: return "/v1/public/characters"
+        case .detail(let id): return "/v1/public/characters/\(id)"
+        case .comics(let id): return "/v1/public/characters/\(id)/comics"
+        case .events(let id): return "/v1/public/characters/\(id)/events"
+        case .series(let id): return "/v1/public/characters/\(id)/series"
+        case .stories(let id): return "/v1/public/characters/\(id)/stories"
+        }
+    }
 }
 
 

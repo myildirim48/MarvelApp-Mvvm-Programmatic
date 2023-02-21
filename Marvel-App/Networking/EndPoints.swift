@@ -23,9 +23,9 @@ extension EndPoints {
     }
     
     //Base with ts,api,hash,page
-    static func urlQueryBase(with offset: Int) -> [URLQueryItem]{
-        return [URLQueryItem(name: urlParams.timeStamp, value: String(ts)),
-                URLQueryItem(name: urlParams.apiKeyCons, value: apiKey),
+    static func urlQueryBase(with offset: Int = 0) -> [URLQueryItem]{
+        return [URLQueryItem(name: urlParams.timeStamp, value: String(timeStamp)),
+                URLQueryItem(name: urlParams.apiKeyCons, value: publicKey),
                 URLQueryItem(name: urlParams.hash, value: md5Creator()),
                 URLQueryItem(name: urlParams.offset, value:String(offset)),
                 URLQueryItem(name: urlParams.limit, value: "20")]
@@ -37,16 +37,27 @@ extension EndPoints {
     
     //Character Urls
     static func charactersUrl(offset: Int) -> EndPoints {
-        return EndPoints(path: urlPaths.characters, queryItems: EndPoints.urlQueryBase(with: offset))
+        return EndPoints(path: UrlPath.base.string, queryItems: EndPoints.urlQueryBase(with: offset))
     }
     
     static func characterSearch(searchText: String,offset:Int) -> EndPoints {
-        return EndPoints(path: urlPaths.characters, queryItems: EndPoints.charSearchUrl(for: searchText,offset: offset))
+        return EndPoints(path: UrlPath.base.string, queryItems: EndPoints.charSearchUrl(for: searchText,offset: offset))
     }
     
-    //Comics Url
-    static func comicsUrl(offset:Int) -> EndPoints {
-        return EndPoints(path: urlPaths.comics, queryItems: EndPoints.urlQueryBase(with: offset))
+    static func characterDetails(charId: Int) -> EndPoints {
+        return EndPoints(path: UrlPath.detail(String(charId)).string, queryItems: EndPoints.urlQueryBase())
+    }
+    
+    // CharacterRequest for Comics
+    /// - Parameter id: String identifier of character
+    static func charDetailDatas(charId: Int) -> EndPoints {
+        return EndPoints(path: UrlPath.comics(String(charId)).string, queryItems: EndPoints.urlQueryBase())
     }
 }
 
+enum searchType : String {
+    case comics = "comics"
+    case series = "series"
+    case events = "events"
+    case stories = "stories"
+}

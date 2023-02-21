@@ -7,18 +7,25 @@
 
 import UIKit
 
+struct Environment {
+    let server: Server
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var server: Server?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        server = Server()
+        let environemnt = Environment(server: server!)
+        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = TabbarController()
+        window?.rootViewController = TabbarController(environment: environemnt)
         window?.makeKeyAndVisible()
         
         configureNavigationBar()
@@ -26,6 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func configureNavigationBar(){
         UINavigationBar.appearance().tintColor = .systemRed
+        UINavigationBar.appearance().backgroundColor = .systemBackground
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
