@@ -13,7 +13,7 @@ protocol HeroListViewModelErrorHandler: NSObject {
 
 class HeroListVM : NSObject{
 
-    enum State { case ready, loading }
+    private enum State { case ready, loading }
 
     private let environment: Environment
     private var state: State = .ready
