@@ -14,7 +14,12 @@ class HeroListVC: UICollectionViewController{
     private var timer : Timer?
     
     private var viewModel : HeroListVM!
+    private var searchResultVM : SearchResultVM!
+    
     private var dataSource : HeroDataSource?
+    
+    var searchController: UISearchController!
+    var searchResultVC: SearchResultVC!
     
     required init?(coder:NSCoder) {
         self.environment = Environment(server: Server())
@@ -30,6 +35,7 @@ class HeroListVC: UICollectionViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HeroListVM(environment: environment)
+        searchResultVM = SearchResultVM(environment: environment)
         defer { viewModel.requestData() }
 
         let dataSource = generateDatasource(for: collectionView)
@@ -37,7 +43,11 @@ class HeroListVC: UICollectionViewController{
         viewModel.errorHandler = self
         
         configureCollectionView()
-        configureSearchController()
+        configureSearch()
+        
+        let searchDataSource = generateDatasource(for: searchResultVC.collectionView)
+        searchResultVM.configureDataSource(with: searchDataSource)
+        searchResultVM.errorHandler = self
     }
     
     private func configureCollectionView(){
@@ -48,68 +58,69 @@ class HeroListVC: UICollectionViewController{
     }
     
     
-    private func configureSearchController(){
-        let searchController = UISearchController()
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search for a character.."
+    private func configureSearch(){
+        searchResultVC = SearchResultVC(collectionViewLayout: UICollectionViewLayoutGenerator.generateLayoutForStyle(.search))
+        searchResultVC.searchResultVM = searchResultVM
+        searchResultVC.collectionView.delegate = self
+        
+        searchController = UISearchController(searchResultsController: searchResultVC)
+        searchController.searchResultsUpdater = searchResultVC
+        searchController.searchBar.autocapitalizationType = .none
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search for a hero.."
+        
+        definesPresentationContext = true
         navigationItem.searchController = searchController
     }
     
-    private func searchChars(searchText:String,offset:Int){
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
-            guard let self = self else { return }
- 
-            //TODO for pagination
-        })
-    }
 }
-//MARK: - CollectionViewDelegate
+//MARK: - CollectionView Delegate
 
 extension HeroListVC {
 
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         switch collectionView {
         case self.collectionView: viewModel.shouldFetchData(index: indexPath.item)
-//            case //TODO SearchVC
+        case searchResultVC.collectionView: searchResultVM.shouldFetchData(index: indexPath.item)
         default: return
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-                
+        
+        let selectedCharacter: Characters!
+        switch collectionView {
+        case self.collectionView: selectedCharacter = viewModel.item(for: indexPath)
+        case searchResultVC.collectionView: selectedCharacter = searchResultVM.item(for: indexPath)
+        default : return
+        }
+        
+        
         let detailVC = DetailVC()
-//        detailVC.charachter = character
+        detailVC.charachter = selectedCharacter
         
         let navController = UINavigationController(rootViewController: detailVC)
         present(navController, animated: true)
     }
 }
 
-extension HeroListVC : UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-
-  
-    }
-    
-    
-}
 //MARK: - Data Source Generator
 
 extension HeroListVC {
     public func generateDatasource(for collectionView: UICollectionView) -> HeroDataSource {
         
-        let dataSource = HeroDataSource(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, character) -> UICollectionViewCell? in
-            guard let self = self else { return nil }
+        let dataSource = HeroDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, character) -> UICollectionViewCell? in
+//            guard let self = self else { return nil }
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroCell.reuseID, for: indexPath) as! HeroCell
             
             cell.character = character
+            
+            //-> TODO ----->
             //Button and Delegate
-            
-            
             //Image fetcher
+            //<-----
+            
             return cell
         })
         
@@ -118,7 +129,10 @@ extension HeroListVC {
             case LoaderReusableView.elementKind:
                 let loaderSupplementary = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LoaderReusableView.reuseIdentifier, for: indexPath) as! LoaderReusableView
                 return loaderSupplementary
-                
+            case SearchResuableView.elementKind:
+                let searchSupplementary = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchResuableView.reuseIdentifier, for: indexPath) as! SearchResuableView
+                self?.searchResultVC.searchInfoView = searchSupplementary
+                return searchSupplementary
             default:
                 return nil
             }
@@ -129,11 +143,10 @@ extension HeroListVC {
 
 //MARK: - Error Handlers
 
-extension HeroListVC: HeroListViewModelErrorHandler {
+extension HeroListVC: HeroListViewModelErrorHandler, SearchResultVMErrorHandler {
+    
     func viewModelDidReceiveError(error: UserFriendlyError) {
         presentMrAlert(title: error.title, message: error.message, buttonTitle: "Ok")
     }
-    
-
 }
 

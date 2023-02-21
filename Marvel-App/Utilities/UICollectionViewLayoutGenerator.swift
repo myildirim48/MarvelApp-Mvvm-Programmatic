@@ -16,7 +16,7 @@ struct UICollectionViewLayoutGenerator {
             case .paginated:
                 return LoaderReusableView.elementKind
             case .search:
-                return LoaderReusableView.elementKind
+                return SearchResuableView.elementKind
             case .favorites:
                 return ""
             }
@@ -27,7 +27,7 @@ struct UICollectionViewLayoutGenerator {
             case .paginated:
                 return CGFloat(60.0)
             case .search:
-                return CGFloat(44.0)
+                return CGFloat(35.0)
             case .favorites:
                 return CGFloat(43.0)
             }
@@ -75,7 +75,7 @@ struct UICollectionViewLayoutGenerator {
             
             let section = NSCollectionLayoutSection(group: group)
             section.interGroupSpacing = 10
-            section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 5, bottom: 20, trailing: 5)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5)
             
             if style != .favorites {
                 let suplemantaryItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(style.heightForViewKind))

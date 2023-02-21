@@ -14,7 +14,7 @@ struct Response<A: Codable> : Codable{
 
 }
 struct DataContainer<A: Codable>: Codable{
-    let total,offset, count: Int
+    let total, limit, offset, count: Int
     let results: [A]
 }
 
