@@ -7,8 +7,11 @@
 
 import UIKit
 
-class DetailVC: LoadingVC {
+class DetailVC: UICollectionViewController {
 
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
     let imageView = ImageView(frame: .zero)
     let nameLabel = MrLabel(textAligment: .left, font: Theme.fonts.titleFont)
     let descriptionLabel = MrLabel(textAligment: .left, font: Theme.fonts.desriptionFont)
@@ -23,6 +26,8 @@ class DetailVC: LoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureScrollView()
+        configureCollectionView()
         setupUI()
         
     }
@@ -45,18 +50,39 @@ class DetailVC: LoadingVC {
         imageView.downloadImage(fromUrl: charachter.thumbnail.path)
         
     }
+
+    private func configureScrollView(){
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.pinToEdges(of: view)
+        contentView.pinToEdges(of: scrollView)
+        
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 1500)
+        ])
+    }
+    
+    private func configureCollectionView(){
+        
+        collectionView.delegate = self
+        collectionView.setCollectionViewLayout(UICollectionViewLayoutGenerator.resourcesCollectionViewLayout(), animated: false)
+        collectionView.register(ResourceCell.self, forCellWithReuseIdentifier: ResourceCell.reuseIdentifier)
+        collectionView.register(TitleSupplementaryView.self, forSupplementaryViewOfKind: TitleSupplementaryView.elementKind, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier)
+    }
+    
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButton
-        UINavigationBar.appearance().backgroundColor = .systemRed
     }
     
     
     private func setupUI() {
         
-        view.addSubviews(imageView,nameLabel,descriptionLabel,favoritedButton)
+        contentView.addSubviews(imageView,nameLabel,descriptionLabel,favoritedButton,collectionView)
         view.backgroundColor = .systemBackground
         
         favoritedButton.addTarget(self, action: #selector(self.favoriteButtonTapped(_:)), for: .touchUpInside)
@@ -65,25 +91,30 @@ class DetailVC: LoadingVC {
         let imgHeight : CGFloat = view.frame.height / 2.5
         
         
-        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor,constant: spacing*2),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: spacing*2),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.heightAnchor.constraint(equalToConstant: imgHeight),
             
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: 2*spacing),
-            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: spacing),
-            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -spacing),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: spacing),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -spacing),
             
             favoritedButton.topAnchor.constraint(equalTo: imageView.bottomAnchor,constant: spacing),
-            favoritedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -spacing),
+            favoritedButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -spacing),
             favoritedButton.widthAnchor.constraint(equalToConstant: 40),
             favoritedButton.heightAnchor.constraint(equalToConstant: 37),
             
             descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: 2*spacing),
             descriptionLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor)
+            descriptionLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            
+            collectionView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor,constant: spacing),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
             
         ])
     }

@@ -11,6 +11,8 @@
 		744C5C79299EBFFE00C0318F /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744C5C78299EBFFE00C0318F /* FavoriteVC.swift */; };
 		744C5C7B299EEE9000C0318F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744C5C7A299EEE9000C0318F /* Response.swift */; };
 		749157DB29A4EDDD002F1643 /* SearchResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749157DA29A4EDDD002F1643 /* SearchResuableView.swift */; };
+		749157DD29A61B34002F1643 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749157DC29A61B34002F1643 /* TitleSupplementaryView.swift */; };
+		749157DF29A61BD9002F1643 /* ResourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749157DE29A61BD9002F1643 /* ResourceCell.swift */; };
 		74D8AF6C2993BC66008D5B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6B2993BC66008D5B62 /* AppDelegate.swift */; };
 		74D8AF6E2993BC66008D5B62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6D2993BC66008D5B62 /* SceneDelegate.swift */; };
 		74D8AF702993BC66008D5B62 /* HeroListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6F2993BC66008D5B62 /* HeroListVC.swift */; };
@@ -60,6 +62,8 @@
 		744C5C78299EBFFE00C0318F /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		744C5C7A299EEE9000C0318F /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		749157DA29A4EDDD002F1643 /* SearchResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResuableView.swift; sourceTree = "<group>"; };
+		749157DC29A61B34002F1643 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		749157DE29A61BD9002F1643 /* ResourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCell.swift; sourceTree = "<group>"; };
 		74D8AF682993BC66008D5B62 /* Marvel-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D8AF6B2993BC66008D5B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74D8AF6D2993BC66008D5B62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				74D8AFA3299518F5008D5B62 /* HeroCell.swift */,
+				749157DE29A61BD9002F1643 /* ResourceCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 			children = (
 				74EB1D4929A3ADC00019569D /* LoaderResuableView.swift */,
 				749157DA29A4EDDD002F1643 /* SearchResuableView.swift */,
+				749157DC29A61B34002F1643 /* TitleSupplementaryView.swift */,
 			);
 			path = CollectionViewResuableViews;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 				74EB1D4A29A3ADC00019569D /* LoaderResuableView.swift in Sources */,
 				7407857229A4D4F200CE2AE9 /* Debouncer.swift in Sources */,
 				74D8AFB429969A23008D5B62 /* MrAlertVC.swift in Sources */,
+				749157DF29A61BD9002F1643 /* ResourceCell.swift in Sources */,
 				74D8AFBD29996421008D5B62 /* Comics.swift in Sources */,
 				74D8AF8A2993C50C008D5B62 /* String+Ext.swift in Sources */,
 				74D8AFA92995197E008D5B62 /* Constans.swift in Sources */,
@@ -456,6 +463,7 @@
 				74EB1D3129A262080019569D /* Query.swift in Sources */,
 				74D8AF9729943017008D5B62 /* ErrorMessages.swift in Sources */,
 				74EB1D3529A2657C0019569D /* Server.swift in Sources */,
+				749157DD29A61B34002F1643 /* TitleSupplementaryView.swift in Sources */,
 				74D8AF9F29951737008D5B62 /* MrLabel.swift in Sources */,
 				74D8AF6E2993BC66008D5B62 /* SceneDelegate.swift in Sources */,
 				74D8AF9C2995120B008D5B62 /* LoadingVC.swift in Sources */,
