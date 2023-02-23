@@ -9,7 +9,12 @@ import UIKit
 
 enum Images {
     static let emptyImage = UIImage(named: "marvel-logo")
-    static let placeHolderHeroImage = UIImage(named: "place-holder-hero")
+    static let placeHolderHeroImage = UIImage(named: "hero_placeholder")
+    static let placeHolderResourceImage : UIImage = {
+        let configuration = UIImage.SymbolConfiguration(scale: .medium)
+        let image = UIImage(systemName: "person.crop.square",withConfiguration: configuration)!
+        return image.withTintColor(.systemGray5, renderingMode: .alwaysOriginal).withTintColor(.systemGray3)
+    }()
 }
 
 enum TabbarImgName {

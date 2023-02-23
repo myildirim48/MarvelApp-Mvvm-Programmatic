@@ -12,3 +12,9 @@ extension Array where Element == Query {
         self.isEmpty ? nil : self.map { $0.item() }
     }
 }
+
+extension Array where Element:Displayable {
+    func toDisplayable() -> Array<DisplayableResource>{
+        self.isEmpty ? [] : self.map{ $0.convert(type: $0) }
+    }
+}

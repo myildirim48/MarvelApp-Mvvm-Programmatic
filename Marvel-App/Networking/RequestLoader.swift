@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct ServerSideError: Error, Equatable {
     public let statusCode: Int
     public let response: HTTPURLResponse?

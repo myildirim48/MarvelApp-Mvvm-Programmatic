@@ -96,7 +96,7 @@ extension HeroListVC {
         }
         
         
-        let detailVC = DetailVC()
+        let detailVC = DetailVC(environment: environment)
         detailVC.charachter = selectedCharacter
         
         let navController = UINavigationController(rootViewController: detailVC)
@@ -146,7 +146,7 @@ extension HeroListVC {
 extension HeroListVC: HeroListViewModelErrorHandler, SearchResultVMErrorHandler {
     
     func viewModelDidReceiveError(error: UserFriendlyError) {
-        presentMrAlert(title: error.title, message: error.message, buttonTitle: "Ok")
+        presentAlertWithError(message: error) { _ in }
     }
 }
 
