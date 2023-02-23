@@ -51,6 +51,26 @@ class Server {
     func characterComicsRequest(id: String) throws -> CharacterRequest<Comics> {
         return CharacterRequest(baseURL, path: .comics(id), auth: try authQueryItems())
     }
+    /// CharacterRequest for Events
+    /// - Parameter id: String identifier of character
+    /// - Returns: Authenticated request with matching Event model type
+    func characterEventRequest(id: String) throws -> CharacterRequest<Event> {
+        return CharacterRequest(baseURL, path: .events(id), auth: try authQueryItems())
+    }
+    
+    /// CharacterRequest for Serie
+    /// - Parameter id: String identifier of character
+    /// - Returns: Authenticated request with matching Serie model type
+    func characterSerieRequest(id: String) throws -> CharacterRequest<Serie> {
+        return CharacterRequest(baseURL, path: .series(id), auth: try authQueryItems())
+    }
+    
+    /// CharacterRequest for Storie
+    /// - Parameter id: String identifier of character
+    /// - Returns: Authenticated request with matching Storie model type
+    func characterStorieRequest(id: String) throws -> CharacterRequest<Storie> {
+        return CharacterRequest(baseURL, path: .stories(id), auth: try authQueryItems())
+    }
 }
 
 extension Server {

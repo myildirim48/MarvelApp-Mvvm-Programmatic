@@ -96,7 +96,7 @@ extension HeroListVC {
         }
         
         
-        let detailVC = DetailVC()
+        let detailVC = DetailVC(environment: environment)
         detailVC.charachter = selectedCharacter
         
         let navController = UINavigationController(rootViewController: detailVC)

@@ -7,20 +7,35 @@
 
 import UIKit
 
-class DetailVC: UICollectionViewController {
+class DetailVC: UIViewController {
 
+    static let nibIdentifier = "HeroDetailViewController"
+
+    var charachter: Characters?
+    private let environment: Environment!
+    private var detailViewModel: DetaiLVM!
+    
     let scrollView = UIScrollView()
     let contentView = UIView()
+    var collectionView : UICollectionView!
     
     let imageView = ImageView(frame: .zero)
     let nameLabel = MrLabel(textAligment: .left, font: Theme.fonts.titleFont)
     let descriptionLabel = MrLabel(textAligment: .left, font: Theme.fonts.desriptionFont)
     let favoritedButton = FavoritesButton(frame: .zero)
     
-    var charachter: Characters? {
-        didSet {
-            update()
-        }
+    required init(environment: Environment) {
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
+        
+        self.detailViewModel = DetaiLVM(environment: environment)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.environment = Environment(server: Server())
+        super.init(coder: coder)
+        
+        self.detailViewModel = DetaiLVM(environment: environment)
     }
     
     override func viewDidLoad() {
@@ -30,6 +45,13 @@ class DetailVC: UICollectionViewController {
         configureCollectionView()
         setupUI()
         
+        detailViewModel.delegate = self
+        let dataSource = configureDataSource()
+        detailViewModel.datasource = dataSource
+        detailViewModel.character = charachter
+        
+        guard let charachter = charachter else { return }
+        update(with: charachter)
     }
     
     @objc func favoriteButtonTapped(_ sender: UIButton){
@@ -37,7 +59,7 @@ class DetailVC: UICollectionViewController {
         
     }
     
-    private func update(){
+    private func update(with character: Characters){
         guard let charachter = charachter else {
             nameLabel.text = nil
             descriptionLabel.text = nil
@@ -65,11 +87,13 @@ class DetailVC: UICollectionViewController {
     }
     
     private func configureCollectionView(){
-        
+  
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayoutGenerator.resourcesCollectionViewLayout())
         collectionView.delegate = self
-        collectionView.setCollectionViewLayout(UICollectionViewLayoutGenerator.resourcesCollectionViewLayout(), animated: false)
+//        collectionView.setCollectionViewLayout(UICollectionViewLayoutGenerator.resourcesCollectionViewLayout(), animated: false)
         collectionView.register(ResourceCell.self, forCellWithReuseIdentifier: ResourceCell.reuseIdentifier)
         collectionView.register(TitleSupplementaryView.self, forSupplementaryViewOfKind: TitleSupplementaryView.elementKind, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier)
+        
     }
     
     
@@ -124,3 +148,39 @@ class DetailVC: UICollectionViewController {
     }
     
 }
+
+extension DetailVC: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        TODO
+    }
+    
+    private func configureDataSource() -> ResourceDataSource {
+        let datasource = ResourceDataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResourceCell.reuseIdentifier, for: indexPath) as! ResourceCell
+            cell.titleLabel.text = itemIdentifier.title
+            cell.imageView.downloadImage(fromUrl: itemIdentifier.thumbnail.path,placeHolderImage: Images.placeHolderResourceImage)
+            return cell
+        }
+        
+        datasource.supplementaryViewProvider = {
+            (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            let titleSupplementary = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier, for: indexPath) as! TitleSupplementaryView
+            
+            let section = UICollectionViewLayoutGenerator.ResourceSection(rawValue: indexPath.section)!
+            titleSupplementary.label.text = section.sectionTitle
+            
+            return titleSupplementary
+        }
+        return datasource
+    }
+    
+}
+
+extension DetailVC: HeroDetailViewModelDelegate {
+    func viewModelDidReceiveError(error: UserFriendlyError) {
+//        presentMrAlert(title: error.title, message: error.message, buttonTitle: "Ok")
+        #warning("Alert problem")
+    }
+}
+

@@ -12,7 +12,7 @@ class ResourceCell: UICollectionViewCell {
     var representedIdentifier: String?
     
     let imageView = ImageView(frame: .zero)
-    let titleLabel = MrLabel(textAligment: .left, font: Theme.fonts.titleFont)
+    let titleLabel = MrLabel(textAligment: .left, font: Theme.fonts.desriptionFont)
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -34,7 +34,7 @@ extension ResourceCell {
         
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = Theme.colors.imageViewBackgroundColor
 
         let spacing = CGFloat(10)

@@ -7,9 +7,9 @@
 
 import UIKit
 class ImageView: UIImageView {
-    let placeHolderImage = Images.emptyImage
+    let placeHolderImage = Images.placeHolderHeroImage
     
-    let cache = NetworkManager.shared.imgCache
+    let cache = ImageFetcher.shared.imgCache
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,17 +33,18 @@ class ImageView: UIImageView {
         "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708"
     ]
     
-    func downloadImage(fromUrl url: String) {
+    func downloadImage(fromUrl url: String,placeHolderImage:UIImage = Images.placeHolderHeroImage!) {
         //Here is adds .jpg and http's' for security url
         if blacklisIdentifiers.contains(url){
             image = placeHolderImage
+            contentMode = .center
         } else {
             var newUrls = url + ".jpg"
             let i = newUrls.index(newUrls.startIndex, offsetBy: 4)
             newUrls.insert("s", at: i)
             
             Task {
-                image = await NetworkManager.shared.downloadImage(from:newUrls) ?? placeHolderImage
+                image = await ImageFetcher.shared.downloadImage(from: newUrls) ?? placeHolderImage
             }
             return
         }

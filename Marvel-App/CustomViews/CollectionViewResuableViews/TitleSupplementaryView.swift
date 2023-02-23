@@ -25,6 +25,7 @@ class TitleSupplementaryView : UICollectionReusableView {
 extension TitleSupplementaryView {
     func configure() {
         let inset = CGFloat(10)
+        addSubview(label)
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
             label.topAnchor.constraint(equalTo: topAnchor, constant: inset)

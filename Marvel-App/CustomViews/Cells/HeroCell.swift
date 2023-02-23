@@ -38,6 +38,7 @@ class HeroCell: UICollectionViewCell {
     }
     
     private func update() {
+        
         guard let character = character else {
             nameLabel.text = nil
             descriptionLabel.text = nil
