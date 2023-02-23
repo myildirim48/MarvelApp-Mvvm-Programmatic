@@ -146,7 +146,7 @@ extension HeroListVC {
 extension HeroListVC: HeroListViewModelErrorHandler, SearchResultVMErrorHandler {
     
     func viewModelDidReceiveError(error: UserFriendlyError) {
-        presentMrAlert(title: error.title, message: error.message, buttonTitle: "Ok")
+        presentAlertWithError(message: error) { _ in }
     }
 }
 

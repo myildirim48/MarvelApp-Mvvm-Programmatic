@@ -10,20 +10,13 @@ import SafariServices
 
 extension UIViewController {
     
-    func presentMrAlert(title: String, message: String, buttonTitle: String){
-            let alertVC = MrAlertVC(alertTitle: title, alertMessage: message, buttonTitle: buttonTitle)
-            alertVC.modalPresentationStyle = .overFullScreen
-            alertVC.modalTransitionStyle = .crossDissolve
-            self.present(alertVC, animated: true)
-    }
-    
-    func presentDefaultError(){
-            let alertVC = MrAlertVC(alertTitle: "Something went wrong.",
-                                    alertMessage: "We were unable to complete your task at this time. Please try again.",
-                                    buttonTitle: "Ok")
-            alertVC.modalPresentationStyle = .overFullScreen
-            alertVC.modalTransitionStyle = .crossDissolve
-            self.present(alertVC, animated: true)
+    func presentAlertWithError(message: UserFriendlyError, callback: @escaping(Bool) -> Void){
+        let alert = UIAlertController(title: message.title, message: message.message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Report", style: .default,handler: { _ in callback(true) }))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default,handler: { _ in callback(false) }))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
     }
     
     func presentSafariVC(with url:URL) {

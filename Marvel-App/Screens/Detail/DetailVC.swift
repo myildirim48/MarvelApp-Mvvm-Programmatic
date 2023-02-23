@@ -179,8 +179,7 @@ extension DetailVC: UICollectionViewDelegate {
 
 extension DetailVC: HeroDetailViewModelDelegate {
     func viewModelDidReceiveError(error: UserFriendlyError) {
-//        presentMrAlert(title: error.title, message: error.message, buttonTitle: "Ok")
-        #warning("Alert problem")
+        presentAlertWithError(message: error) { _ in }
     }
 }
 
