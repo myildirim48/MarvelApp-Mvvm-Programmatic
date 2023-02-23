@@ -6,29 +6,32 @@
 //
 
 import Foundation
+import CoreData
 
-//struct CharacterResponse: Codable{
-//    let data: CharacterData
-//}
-//
-//// MARK: - DataClass
-//struct CharacterData: Codable{
-//    let total, count: Int
-//    let results: [CharacterModel]
-//}
+protocol Persistable {
+    associatedtype ManagedObject: NSManagedObject
+    init(managedObject: ManagedObject)
+}
 
-// MARK: - Result
-struct Characters: Codable, Hashable {
+struct Characters: Codable {
     let id: Int
     let name, description: String
     let thumbnail: Thumbnail
+
+    
+}
+
+extension Characters: Hashable, Equatable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+    }
     
     static func == (lhs: Characters, rhs: Characters) -> Bool {
-        return lhs.id == rhs.id &&
-               lhs.name == rhs.name &&
-               lhs.thumbnail == rhs.thumbnail &&
-               lhs.description == rhs.description
+        return lhs.id == rhs.id && lhs.name == rhs.name
     }
     
 }
+
 
