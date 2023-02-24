@@ -183,3 +183,26 @@ extension SearchResultVM {
         let query:SearchQuery
     }
 }
+
+//MARK: - NSFetchedResultControllerDelegate
+import CoreData
+import UIKit
+
+extension SearchResultVM: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith diff: CollectionDifference<NSManagedObjectID>) {
+        for change in diff {
+            switch change {
+            case .insert(_, let elementId, _):
+                if let characterObject = environment.store.viewContext.registeredObject(for: elementId) as? CharacterObject {
+                    let character = Characters(managedObject: characterObject)
+                    reloadDataSource(with: character)
+                }
+            case .remove(_, let elementId, _):
+                if let characterObject = environment.store.viewContext.registeredObject(for: elementId) as? CharacterObject {
+                    let character = Characters(managedObject: characterObject)
+                    reloadDataSource(with: character)
+                }
+            }
+        }
+    }
+}

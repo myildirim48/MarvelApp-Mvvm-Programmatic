@@ -30,7 +30,7 @@ class SearchResuableView: UICollectionReusableView {
     }
     
     func presentInformation(count: Int){
-        let info = count > 0 ? "\(count) hereos found." : "No hereos found."
+        let info = count > 0 ? "\(count) heroes found." : "No heroes found."
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             self.label.text = info

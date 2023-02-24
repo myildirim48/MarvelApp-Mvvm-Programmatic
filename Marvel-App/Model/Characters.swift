@@ -16,9 +16,7 @@ protocol Persistable {
 struct Characters: Codable {
     let id: Int
     let name, description: String
-    let thumbnail: Thumbnail
-
-    
+    let thumbnail: Thumbnail?
 }
 
 extension Characters: Hashable, Equatable {
@@ -33,5 +31,16 @@ extension Characters: Hashable, Equatable {
     }
     
 }
-
+extension Characters: Persistable {
+    typealias ManagedObject = CharacterObject
+    
+    init(managedObject: CharacterObject) {
+        id = Int(managedObject.id)
+        name = managedObject.name
+        description = managedObject.descriptionText
+        thumbnail = Thumbnail(path: managedObject.image?.path, ext: managedObject.image?.type, data: managedObject.image?.imgData)
+    }
+    
+    
+}
 

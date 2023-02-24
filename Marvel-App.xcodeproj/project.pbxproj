@@ -19,10 +19,12 @@
 		749157E729A62855002F1643 /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749157E629A62855002F1643 /* Serie.swift */; };
 		749157E929A75E1B002F1643 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749157E829A75E1B002F1643 /* ImageFetcher.swift */; };
 		749157EC29A7B78A002F1643 /* FavoritesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749157EB29A7B78A002F1643 /* FavoritesVM.swift */; };
-		749157F029A7BCF9002F1643 /* MarvelDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 749157EE29A7BCF9002F1643 /* MarvelDB.xcdatamodeld */; };
 		749157F229A7BE1B002F1643 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749157F129A7BE1B002F1643 /* Store.swift */; };
 		74AE3CBA29A7D89B00C224E9 /* CharacterObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AE3CB929A7D89B00C224E9 /* CharacterObject.swift */; };
 		74AE3CBC29A7D93300C224E9 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AE3CBB29A7D93300C224E9 /* ImageObject.swift */; };
+		74AE3CBE29A8B3EE00C224E9 /* FavoritesHeroesFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AE3CBD29A8B3EE00C224E9 /* FavoritesHeroesFetchController.swift */; };
+		74AE3CC029A8B4D100C224E9 /* StateChangeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AE3CBF29A8B4D100C224E9 /* StateChangeMessage.swift */; };
+		74AE3CC329A8ED4A00C224E9 /* Heroes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74AE3CC129A8ED4A00C224E9 /* Heroes.xcdatamodeld */; };
 		74D8AF6C2993BC66008D5B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6B2993BC66008D5B62 /* AppDelegate.swift */; };
 		74D8AF6E2993BC66008D5B62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6D2993BC66008D5B62 /* SceneDelegate.swift */; };
 		74D8AF702993BC66008D5B62 /* HeroListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D8AF6F2993BC66008D5B62 /* HeroListVC.swift */; };
@@ -75,10 +77,12 @@
 		749157E629A62855002F1643 /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
 		749157E829A75E1B002F1643 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		749157EB29A7B78A002F1643 /* FavoritesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVM.swift; sourceTree = "<group>"; };
-		749157EF29A7BCF9002F1643 /* MarvelDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarvelDB.xcdatamodel; sourceTree = "<group>"; };
 		749157F129A7BE1B002F1643 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		74AE3CB929A7D89B00C224E9 /* CharacterObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterObject.swift; sourceTree = "<group>"; };
 		74AE3CBB29A7D93300C224E9 /* ImageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
+		74AE3CBD29A8B3EE00C224E9 /* FavoritesHeroesFetchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHeroesFetchController.swift; sourceTree = "<group>"; };
+		74AE3CBF29A8B4D100C224E9 /* StateChangeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateChangeMessage.swift; sourceTree = "<group>"; };
+		74AE3CC229A8ED4A00C224E9 /* Heroes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Heroes.xcdatamodel; sourceTree = "<group>"; };
 		74D8AF682993BC66008D5B62 /* Marvel-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marvel-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D8AF6B2993BC66008D5B62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74D8AF6D2993BC66008D5B62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,10 +147,11 @@
 		749157ED29A7BCD1002F1643 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				749157EE29A7BCF9002F1643 /* MarvelDB.xcdatamodeld */,
 				749157F129A7BE1B002F1643 /* Store.swift */,
 				74AE3CB929A7D89B00C224E9 /* CharacterObject.swift */,
 				74AE3CBB29A7D93300C224E9 /* ImageObject.swift */,
+				74AE3CBD29A8B3EE00C224E9 /* FavoritesHeroesFetchController.swift */,
+				74AE3CC129A8ED4A00C224E9 /* Heroes.xcdatamodeld */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				74EB1D4129A2E30F0019569D /* UserFriendlyError.swift */,
+				74AE3CBF29A8B4D100C224E9 /* StateChangeMessage.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -466,10 +472,12 @@
 				74D8AF912993F861008D5B62 /* Characters.swift in Sources */,
 				74EB1D3729A26CE00019569D /* Int+Ext.swift in Sources */,
 				74EB1D3B29A270FD0019569D /* CharacterRequestManager.swift in Sources */,
+				74AE3CC029A8B4D100C224E9 /* StateChangeMessage.swift in Sources */,
 				74D8AF702993BC66008D5B62 /* HeroListVC.swift in Sources */,
 				74D8AFF8299E81D3008D5B62 /* DetailVC.swift in Sources */,
 				74EB1D3F29A2DB8A0019569D /* DataSource+SnapShot.swift in Sources */,
 				74D8AFC5299D20BA008D5B62 /* Theme.swift in Sources */,
+				74AE3CC329A8ED4A00C224E9 /* Heroes.xcdatamodeld in Sources */,
 				74D8AFA4299518F5008D5B62 /* HeroCell.swift in Sources */,
 				74EB1D3929A26E340019569D /* RequestLoader.swift in Sources */,
 				74D8AF6C2993BC66008D5B62 /* AppDelegate.swift in Sources */,
@@ -481,9 +489,9 @@
 				74D8AFBF299A351F008D5B62 /* Thumbnail.swift in Sources */,
 				74EB1D3129A262080019569D /* Query.swift in Sources */,
 				749157E529A627A4002F1643 /* Event.swift in Sources */,
+				74AE3CBE29A8B3EE00C224E9 /* FavoritesHeroesFetchController.swift in Sources */,
 				74D8AF9729943017008D5B62 /* ErrorMessages.swift in Sources */,
 				74EB1D3529A2657C0019569D /* Server.swift in Sources */,
-				749157F029A7BCF9002F1643 /* MarvelDB.xcdatamodeld in Sources */,
 				749157DD29A61B34002F1643 /* TitleSupplementaryView.swift in Sources */,
 				74D8AF9F29951737008D5B62 /* MrLabel.swift in Sources */,
 				74D8AF6E2993BC66008D5B62 /* SceneDelegate.swift in Sources */,
@@ -706,13 +714,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		749157EE29A7BCF9002F1643 /* MarvelDB.xcdatamodeld */ = {
+		74AE3CC129A8ED4A00C224E9 /* Heroes.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				749157EF29A7BCF9002F1643 /* MarvelDB.xcdatamodel */,
+				74AE3CC229A8ED4A00C224E9 /* Heroes.xcdatamodel */,
 			);
-			currentVersion = 749157EF29A7BCF9002F1643 /* MarvelDB.xcdatamodel */;
-			path = MarvelDB.xcdatamodeld;
+			currentVersion = 74AE3CC229A8ED4A00C224E9 /* Heroes.xcdatamodel */;
+			path = Heroes.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

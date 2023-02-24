@@ -6,21 +6,25 @@
 //
 
 import CoreData
+
 public class ImageObject: NSManagedObject {
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ImageObject> {
-        return NSFetchRequest<ImageObject>(entityName: "CharacterImage")
+        return NSFetchRequest<ImageObject>(entityName: "ImageObject")
     }
+    
     @NSManaged public var path: String?
     @NSManaged public var type: String?
-    @NSManaged public var data: Data?
+    @NSManaged public var imgData: Data?
     @NSManaged public var character: CharacterObject?
     
 }
+
 extension ImageObject {
+    
     static func findOrCreateImage(with image: Thumbnail, with data: Data?, in context: NSManagedObjectContext) throws -> ImageObject {
         let request: NSFetchRequest<ImageObject> = ImageObject.fetchRequest()
-        request.predicate = NSPredicate(format: "path = %@", image.path)
+    request.predicate = NSPredicate(format: "path = %@", image.path!)
         
         do {
             let match = try context.fetch(request)
@@ -34,7 +38,7 @@ extension ImageObject {
         let imageObject = ImageObject(context: context)
         imageObject.path = image.path
         imageObject.type = image.ext
-        imageObject.data = data
+        imageObject.imgData = data
         return imageObject
     }
 }

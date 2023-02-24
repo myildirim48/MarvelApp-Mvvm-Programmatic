@@ -9,19 +9,22 @@ import UIKit
 
 struct Environment {
     let server: Server
+    let store: Store
 }
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var server: Server?
+    var store: Store?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         server = Server()
-        let environemnt = Environment(server: server!)
+        store = Store()
+        let environemnt = Environment(server: server!,store: store!)
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene

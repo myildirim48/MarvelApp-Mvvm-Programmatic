@@ -8,8 +8,9 @@
 import Foundation
 
 struct Thumbnail: Codable, Hashable {
-    let path: String
-    let ext: String
+    let path: String?
+    let ext: String?
+    var data: Data?
 
     static func == (lhs: Thumbnail, rhs: Thumbnail) -> Bool {
         return lhs.path == rhs.path && lhs.ext == rhs.ext

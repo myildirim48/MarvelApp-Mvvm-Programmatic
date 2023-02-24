@@ -22,7 +22,7 @@ class HeroListVC: UICollectionViewController{
     var searchResultVC: SearchResultVC!
     
     required init?(coder:NSCoder) {
-        self.environment = Environment(server: Server())
+        self.environment = Environment(server: Server(),store: Store())
         super.init(coder: coder)
     }
     
@@ -90,8 +90,11 @@ extension HeroListVC {
         
         let selectedCharacter: Characters!
         switch collectionView {
+        
         case self.collectionView: selectedCharacter = viewModel.item(for: indexPath)
+            
         case searchResultVC.collectionView: selectedCharacter = searchResultVM.item(for: indexPath)
+        
         default : return
         }
         
@@ -109,13 +112,14 @@ extension HeroListVC {
 extension HeroListVC {
     public func generateDatasource(for collectionView: UICollectionView) -> HeroDataSource {
         
-        let dataSource = HeroDataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, character) -> UICollectionViewCell? in
-//            guard let self = self else { return nil }
+        let dataSource = HeroDataSource(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, character) -> UICollectionViewCell? in
+            guard let self = self else { return nil }
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroCell.reuseID, for: indexPath) as! HeroCell
             
+            cell.favoritesButton.isSelected = self.environment.store.viewContext.hasPersistenceId(for: character)
             cell.character = character
-            
+            cell.delegate = self
             //-> TODO ----->
             //Button and Delegate
             //Image fetcher
@@ -149,4 +153,12 @@ extension HeroListVC: HeroListViewModelErrorHandler, SearchResultVMErrorHandler 
         presentAlertWithError(message: error) { _ in }
     }
 }
+//MARK: - Herocell Delegate
 
+extension HeroListVC: HeroCellDelegate {
+    func heroCellFavoriteButtonTapped(cell: HeroCell) {
+        guard let character = cell.character else { return }
+        let imageData = cell.imageView.image?.pngData()
+        environment.store.toggleStorage(for: character, with: imageData,completion: {_ in})
+    }
+}

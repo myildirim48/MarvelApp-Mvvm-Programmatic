@@ -18,3 +18,10 @@ extension Array where Element:Displayable {
         self.isEmpty ? [] : self.map{ $0.convert(type: $0) }
     }
 }
+
+extension Array where Element == CharacterObject {
+    func toCharacters() -> Array<Characters>? {
+        self.isEmpty ? nil : self.map { Characters(managedObject: $0) }
+    }
+}
+

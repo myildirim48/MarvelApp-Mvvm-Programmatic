@@ -12,7 +12,7 @@ class TabbarController: UITabBarController {
     var environment: Environment!
 
     required init?(coder:NSCoder) {
-        self.environment = Environment(server: Server())
+        self.environment = Environment(server: Server(),store: Store())
         super.init(coder: coder)
     }
     required init(environment: Environment?) {
@@ -27,7 +27,7 @@ class TabbarController: UITabBarController {
         tabbarApperance.tintColor = .systemRed
         tabbarApperance.backgroundColor = .systemGray6
         viewControllers = [createTabbarItem(view: HeroListVC(environemnt: environment, layout: UICollectionViewLayoutGenerator.generateLayoutForStyle(.paginated)), title: "Heros", itemImage: TabbarImgName.mainVCImage)
-                           ,createTabbarItem(view: FavoriteVC(), title: "Favorites", itemImage: TabbarImgName.favoriteVCImage)]
+                           ,createTabbarItem(view: FavoriteVC(environemt: environment, layout: UICollectionViewLayoutGenerator.generateLayoutForStyle(.favorites)), title: "Favorites", itemImage: TabbarImgName.favoriteVCImage)]
     }
     
     func createTabbarItem(view: UIViewController ,title:String, itemImage: String) -> UINavigationController{

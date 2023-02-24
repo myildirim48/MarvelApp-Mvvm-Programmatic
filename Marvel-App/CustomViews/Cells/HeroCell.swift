@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+protocol HeroCellDelegate:NSObject {
+    func heroCellFavoriteButtonTapped(cell:HeroCell)
+}
 
 class HeroCell: UICollectionViewCell {
     
@@ -18,6 +20,12 @@ class HeroCell: UICollectionViewCell {
     let descriptionLabel = MrLabel(textAligment: .left, font: Theme.fonts.desriptionFont)
     let favoritesButton = FavoritesButton(frame: .zero)
     
+    weak var delegate: HeroCellDelegate?
+    
+    @objc func favoriteButtonTapped(_ sender: UIButton){
+        guard let delegate = delegate else { return }
+        delegate.heroCellFavoriteButtonTapped(cell: self)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,14 +36,20 @@ class HeroCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    @objc func favoriteButtonTapped(_ sender: UIButton){
-        sender.isSelected = sender.isSelected == true ? false : true
-    }
+
     var character: Characters? {
         didSet {
             update()
         }
     }
+    
+    public func update(image: UIImage?){
+        DispatchQueue.main.async {
+            self.update(image)
+        }
+    }
+    
+    //MARK: -Private
     
     private func update() {
         
@@ -47,12 +61,20 @@ class HeroCell: UICollectionViewCell {
 
         nameLabel.text = character.name
         descriptionLabel.text = character.description.isEmpty ? unavailableDescription : character.description
-        imageView.downloadImage(fromUrl: character.thumbnail.path)
+        guard let imgUrl = character.thumbnail?.path else { return }
+        imageView.downloadImage(fromUrl: imgUrl)
+    }
+    
+    private func update(_ image: UIImage?){
+        guard let image = image else {
+            return imageView.image = Images.placeHolderHeroImage
+        }
+        imageView.image = image
     }
 
-    //MARK: -Private
+    
     private func configure(){
-  
+        
         imageView.backgroundColor = Theme.colors.imageViewBackgroundColor
         imageView.layer.cornerRadius = 46.0
         imageView.layer.borderWidth = 3.0

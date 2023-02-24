@@ -23,6 +23,7 @@ class HeroListVM : NSObject{
     private var dataContainer : DataContainer<Characters>?
     
     private var dataSource : HeroDataSource?
+    private var favoriteHeroesController: FavoritesHeroesFetchController!
     
     weak var errorHandler: HeroListViewModelErrorHandler?
     
@@ -32,6 +33,9 @@ class HeroListVM : NSObject{
         
         request = try? environment.server.characterRequest()
         requestLoader = RequestLoader(request: request)
+        
+        favoriteHeroesController = FavoritesHeroesFetchController(context: environment.store.viewContext, delegate: self)
+        favoriteHeroesController.updateFetchController()
     }
     
     func configureDataSource(with dataSource: HeroDataSource){
@@ -131,4 +135,26 @@ class HeroListVM : NSObject{
     }
 }
 
+//MARK: - NSFetchedResultsControllerDelegate
+import UIKit
+import CoreData
 
+extension HeroListVM: NSFetchedResultsControllerDelegate {
+  
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith diff: CollectionDifference<NSManagedObjectID>) {
+        for change in diff {
+            switch change {
+            case .insert(_, let elementId, _):
+                if let characterObject = environment.store.viewContext.registeredObject(for: elementId) as? CharacterObject {
+                    let character = Characters(managedObject: characterObject)
+                    reloadDataSource(with: character)
+                }
+            case .remove(_, let elementId, _):
+                if let characterObject = environment.store.viewContext.registeredObject(for: elementId) as? CharacterObject {
+                    let character = Characters(managedObject: characterObject)
+                    reloadDataSource(with: character)
+                }
+            }
+        }
+    }
+}

@@ -18,7 +18,7 @@ final class Store {
     private let container: NSPersistentContainer
     private var storeErrors: [StoreError]?
     
-    init(name:String? = "MarvelDB") {
+    init(name:String? = "Heroes") {
         container = NSPersistentContainer(name: name!)
         container.loadPersistentStores { storeDescription, error in
             guard error == nil else {
@@ -48,10 +48,80 @@ final class Store {
         
         context.perform {
             do {
-                try
+                try CharacterObject.deleteCharacter(with: character, in: context)
+            self.save(context) { result in
+                    switch result {
+                    case .success(let status): print("Save status: \(status)")
+                    case .failure(let errorStatus): self.storeErrors?.append(errorStatus)
+                    }
+                }
             }catch {
-                
+                let storeError = StoreError.save(error)
+                self.storeErrors?.append(storeError)
             }
+        }
+    }
+    
+    func toggleStorage(for character: Characters, with data: Data? = nil, completion: @escaping (Bool) -> Void) {
+        let context = viewContext
+        context.perform {
+            do {
+                if  context.hasPersistenceId(for: character) {
+                    try CharacterObject.deleteCharacter(with: character, in: context)
+                }
+                else {
+                    if let imageData = data, let imageObject = try? ImageObject.findOrCreateImage(with: character.thumbnail!, with: imageData, in: context) {
+                        _ = CharacterObject.createCharacter(with: character, imageObject: imageObject, in: context)
+                    } else {
+                        _ = CharacterObject.createCharacter(with: character, imageObject: nil, in: context)
+                    }
+                }
+                
+                self.save(context) { result in
+                    switch result {
+                    case .success(_): completion(true)
+                    case .failure(let storeError):
+                        completion(false)
+                        self.storeErrors?.append(storeError)
+                    }
+                }
+            }catch {
+                let storeError = StoreError.save(error)
+                self.storeErrors?.append(storeError)
+                completion(false)
+            }
+        }
+    }
+    
+    private func save(_ context: NSManagedObjectContext, completion: @escaping (Result<Bool, StoreError>) -> ()) {
+        var status = false
+        context.perform {
+            if context.hasChanges{
+                do {
+                    try context.save()
+                }catch{
+                    let error = StoreError.save(error)
+                    return completion(.failure(error))
+                }
+            }
+            status = true
+            completion(.success(status))
+        }
+    }
+}
+extension NSManagedObjectContext {
+    func hasPersistenceId(for character: Characters) -> Bool{
+        let request: NSFetchRequest<CharacterObject> = CharacterObject.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %ld", Int64(character.id))
+        request.propertiesToFetch = ["id"]
+        do {
+            let match = try self.fetch(request)
+            guard let _ = match.first else {
+                return false
+            }
+            return true
+        }catch {
+            return false
         }
     }
 }

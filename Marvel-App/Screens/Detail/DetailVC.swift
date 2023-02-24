@@ -32,7 +32,7 @@ class DetailVC: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        self.environment = Environment(server: Server())
+        self.environment = Environment(server: Server(),store: Store())
         super.init(coder: coder)
         
         self.detailViewModel = DetaiLVM(environment: environment)
@@ -55,7 +55,7 @@ class DetailVC: UIViewController {
     }
     
     @objc func favoriteButtonTapped(_ sender: UIButton){
-        sender.isSelected = sender.isSelected == true ? false : true
+        presentPersistenceAlert()
         
     }
     
@@ -69,7 +69,8 @@ class DetailVC: UIViewController {
         title = charachter.name
         nameLabel.text = charachter.name
         descriptionLabel.text = charachter.description.isEmpty ? unavailableDescription : charachter.description
-        imageView.downloadImage(fromUrl: charachter.thumbnail.path)
+        favoritedButton.isSelected = environment.store.viewContext.hasPersistenceId(for: character)
+        imageView.downloadImage(fromUrl: charachter.thumbnail?.path ?? " ")
         
     }
 
@@ -159,7 +160,7 @@ extension DetailVC: UICollectionViewDelegate {
         let datasource = ResourceDataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResourceCell.reuseIdentifier, for: indexPath) as! ResourceCell
             cell.titleLabel.text = itemIdentifier.title
-            cell.imageView.downloadImage(fromUrl: itemIdentifier.thumbnail.path,placeHolderImage: Images.placeHolderResourceImage)
+            cell.imageView.downloadImage(fromUrl: itemIdentifier.thumbnail.path ?? " ",placeHolderImage: Images.placeHolderResourceImage)
             return cell
         }
         
@@ -180,6 +181,33 @@ extension DetailVC: UICollectionViewDelegate {
 extension DetailVC: HeroDetailViewModelDelegate {
     func viewModelDidReceiveError(error: UserFriendlyError) {
         presentAlertWithError(message: error) { _ in }
+    }
+    
+    func viewModelDidTogglePersistence(with status: Bool) {
+        guard status else { return }
+        animateFavoriteButtonSelection()
+    }
+    
+    func animateFavoriteButtonSelection(){
+        UIView.transition(with: favoritedButton, duration: 0.25,options: .transitionCrossDissolve) {
+            self.favoritedButton.isSelected = !self.favoritedButton.isSelected
+        }
+    }
+    
+    func presentPersistenceAlert() {
+        guard let message = detailViewModel.composeStateChangeMessage() else { return }
+        
+        switch message.state {
+        case .persisted :
+            presentAlertWithStateChange(message: message) { [weak self] status in
+                guard status, let self = self else { return }
+                
+                self.detailViewModel.toggleCharacterPersistence(with: message, data: self.imageView.image?.pngData())
+                self.navigationController?.popViewController(animated: true)
+            }
+        case .memory :
+            self.detailViewModel.toggleCharacterPersistence(with: message, data: self.imageView.image?.pngData())
+        }
     }
 }
 
