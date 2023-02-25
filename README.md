@@ -1,7 +1,7 @@
 ## Marvel App
 This my tutorial app to show what i learned about ios development. I used Diffable datasource in this project. There is no 3rd party application in app.
 
-###D escription 
+### Description 
 - With this application;
     - can search for characters
     - can look details for characters
