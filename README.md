@@ -1,7 +1,7 @@
 ## Marvel App
 This my tutorial app to show what i learned about ios development. I used Diffable datasource in this project. There is no 3rd party application in app.
 
-###Description 
+###D escription 
 - With this application;
     - can search for characters
     - can look details for characters
@@ -14,4 +14,4 @@ This my tutorial app to show what i learned about ios development. I used Diffab
 - API : [Marvel Api](https://developer.marvel.com)        
 
  #### Gif
- ![](https://github.com/Protein-Swift-Bootcamp/week-4-homework-2-myildirim48/blob/main/RickAndMorty.gif?raw=true)
+ ![](https://github.com/myildirim48/MarvelApp-Mvvm-Programmatic/blob/main/Marvel-App/MarvelApp.gif?raw=true)
