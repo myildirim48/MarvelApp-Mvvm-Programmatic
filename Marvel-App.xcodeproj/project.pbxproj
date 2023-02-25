@@ -160,6 +160,7 @@
 		74D8AF5F2993BC66008D5B62 = {
 			isa = PBXGroup;
 			children = (
+				744821A729AAAB1A00DBF92D /* README.md */,
 				74D8AF6A2993BC66008D5B62 /* Marvel-App */,
 				74D8AF692993BC66008D5B62 /* Products */,
 			);
@@ -185,7 +186,6 @@
 				74D8AF8B2993C5C5008D5B62 /* Extensions */,
 				749157ED29A7BCD1002F1643 /* Persistence */,
 				74D8AF792993BC67008D5B62 /* Info.plist */,
-				744821A729AAAB1A00DBF92D /* README.md */,
 			);
 			path = "Marvel-App";
 			sourceTree = "<group>";
