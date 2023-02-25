@@ -38,6 +38,7 @@ class RequestLoader<T: Request>{
         do {
             let req = try request.composeRequest(with: data)
             session.dataTask(with: req) { data, response, error in
+                print(req.url)
                 if let error = error {
                     onComplete(.failure(RequestLoaderError.Transport(error)))
                 }

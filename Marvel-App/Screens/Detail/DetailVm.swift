@@ -5,10 +5,11 @@
 //  Created by YILDIRIM on 22.02.2023.
 //
 
-import UIKit
+import Foundation
+
 protocol HeroDetailViewModelDelegate: NSObject{
     func viewModelDidReceiveError(error: UserFriendlyError)
-    func viewModelDidTogglePersistence(with status:Bool)
+    func viewModelDidTogglePersistence(with status: Bool)
 }
 
 class DetaiLVM: NSObject {
@@ -30,7 +31,7 @@ class DetaiLVM: NSObject {
     
     weak var delegate : HeroDetailViewModelDelegate?
     
-    init(environment:Environment,state:State = .memory) {
+    init(environment: Environment,state: State = .memory) {
         self.state = state
         self.environment = environment
         super.init()
@@ -38,8 +39,8 @@ class DetaiLVM: NSObject {
     
     private func configure(){
         detailViewRequestManager = CharacterRequestManager(server: environment.server, delegate : self)
-        detailViewRequestManager?.configureResourceRequest(with: character.id)
-        detailViewRequestManager?.requestCharacterData()
+        detailViewRequestManager!.configureResourceRequest(with: character.id)
+        detailViewRequestManager!.requestCharacterData()
     }
     
     func applyDatasourceChange(section: ResourceDataSource.Section, resources: [DisplayableResource]){
@@ -82,6 +83,4 @@ extension DetaiLVM: CharacterRequestManagerDelegate {
     func requestManagerDidReceiveError(userFriendlyError: UserFriendlyError) {
         delegate?.viewModelDidReceiveError(error: userFriendlyError)
     }
-    
-    
 }

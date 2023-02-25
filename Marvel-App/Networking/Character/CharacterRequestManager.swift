@@ -15,7 +15,6 @@ protocol CharacterRequestManagerDelegate: NSObject {
 class CharacterRequestManager {
     
     let server: Server!
-    
     weak var delegate :CharacterRequestManagerDelegate?
     
     var comicRequest : CharacterRequest<Comics>!
@@ -77,6 +76,7 @@ class CharacterRequestManager {
                 return
             case let .failure(error):
                 self.delegate?.requestManagerDidReceiveError(userFriendlyError: .userFriendlyError(error))
+                print("hello")
                 return
             }
         }

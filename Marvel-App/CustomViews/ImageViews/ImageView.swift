@@ -24,7 +24,7 @@ class ImageView: UIImageView {
 
         clipsToBounds = true
         contentMode = .scaleToFill
-        image = placeHolderImage
+//        image = placeHolderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -33,11 +33,11 @@ class ImageView: UIImageView {
         "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708"
     ]
     
-    func downloadImage(fromUrl url: String,placeHolderImage:UIImage = Images.placeHolderHeroImage!) {
+    func downloadImage(fromUrl url: String, placeHolderImage:UIImage ) {
         //Here is adds .jpg and http's' for security url
         if blacklisIdentifiers.contains(url){
             image = placeHolderImage
-            contentMode = .center
+//            contentMode = .center
         } else {
             var newUrls = url + ".jpg"
             let i = newUrls.index(newUrls.startIndex, offsetBy: 4)

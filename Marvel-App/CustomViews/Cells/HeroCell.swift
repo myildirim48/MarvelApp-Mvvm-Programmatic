@@ -62,24 +62,22 @@ class HeroCell: UICollectionViewCell {
         nameLabel.text = character.name
         descriptionLabel.text = character.description.isEmpty ? unavailableDescription : character.description
         guard let imgUrl = character.thumbnail?.path else { return }
-        imageView.downloadImage(fromUrl: imgUrl)
+        imageView.downloadImage(fromUrl: imgUrl, placeHolderImage: Images.placeHolderHeroImage)
     }
     
     private func update(_ image: UIImage?){
         guard let image = image else {
             return imageView.image = Images.placeHolderHeroImage
         }
-        imageView.image = image
+            self.imageView.image = image
     }
-
-    
     private func configure(){
         
         imageView.backgroundColor = Theme.colors.imageViewBackgroundColor
         imageView.layer.cornerRadius = 46.0
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.systemGray3.cgColor
-        
+        imageView.contentMode = .scaleAspectFit
         
         favoritesButton.addTarget(self, action: #selector(self.favoriteButtonTapped(_:)), for: .touchUpInside)
         

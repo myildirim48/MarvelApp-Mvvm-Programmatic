@@ -9,7 +9,7 @@ import UIKit
 
 enum Images {
     static let emptyImage = UIImage(named: "marvel-logo")
-    static let placeHolderHeroImage = UIImage(named: "hero_placeholder")
+    static let placeHolderHeroImage = UIImage(named: "hero_placeholder")!
     static let placeHolderResourceImage : UIImage = {
         let configuration = UIImage.SymbolConfiguration(scale: .medium)
         let image = UIImage(systemName: "person.crop.square",withConfiguration: configuration)!

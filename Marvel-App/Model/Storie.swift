@@ -12,7 +12,7 @@ struct Storie:Codable {
     let description: String?
     let type: String?
     let modified: String?
-    let thumbnail: Thumbnail
+    let thumbnail: Thumbnail?
 }
 
 extension Storie: Hashable, Equatable {

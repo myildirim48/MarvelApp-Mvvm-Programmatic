@@ -49,14 +49,13 @@ class DetailVC: UIViewController {
         let dataSource = configureDataSource()
         detailViewModel.datasource = dataSource
         detailViewModel.character = charachter
-        
+
         guard let charachter = charachter else { return }
         update(with: charachter)
     }
     
     @objc func favoriteButtonTapped(_ sender: UIButton){
         presentPersistenceAlert()
-        
     }
     
     private func update(with character: Characters){
@@ -70,8 +69,14 @@ class DetailVC: UIViewController {
         nameLabel.text = charachter.name
         descriptionLabel.text = charachter.description.isEmpty ? unavailableDescription : charachter.description
         favoritedButton.isSelected = environment.store.viewContext.hasPersistenceId(for: character)
-        imageView.downloadImage(fromUrl: charachter.thumbnail?.path ?? " ")
         
+        if let data = character.thumbnail?.data, let image = UIImage(data: data){
+            imageView.image = image
+        }else {
+            DispatchQueue.main.async {
+                self.imageView.downloadImage(fromUrl: charachter.thumbnail?.path ?? " ", placeHolderImage: Images.placeHolderResourceImage)
+            }
+        }
     }
 
     private func configureScrollView(){
@@ -88,13 +93,11 @@ class DetailVC: UIViewController {
     }
     
     private func configureCollectionView(){
-  
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayoutGenerator.resourcesCollectionViewLayout())
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.delegate = self
-//        collectionView.setCollectionViewLayout(UICollectionViewLayoutGenerator.resourcesCollectionViewLayout(), animated: false)
+        collectionView.setCollectionViewLayout(UICollectionViewLayoutGenerator.resourcesCollectionViewLayout(), animated: false)
         collectionView.register(ResourceCell.self, forCellWithReuseIdentifier: ResourceCell.reuseIdentifier)
         collectionView.register(TitleSupplementaryView.self, forSupplementaryViewOfKind: TitleSupplementaryView.elementKind, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier)
-        
     }
     
     
@@ -103,7 +106,6 @@ class DetailVC: UIViewController {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = doneButton
     }
-    
     
     private func setupUI() {
         
@@ -114,7 +116,6 @@ class DetailVC: UIViewController {
         
         let spacing : CGFloat = 12
         let imgHeight : CGFloat = view.frame.height / 2.5
-        
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -144,7 +145,6 @@ class DetailVC: UIViewController {
         ])
     }
     @objc func dismissVC() {
-
         dismiss(animated: true)
     }
     
@@ -160,7 +160,7 @@ extension DetailVC: UICollectionViewDelegate {
         let datasource = ResourceDataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResourceCell.reuseIdentifier, for: indexPath) as! ResourceCell
             cell.titleLabel.text = itemIdentifier.title
-            cell.imageView.downloadImage(fromUrl: itemIdentifier.thumbnail.path ?? " ",placeHolderImage: Images.placeHolderResourceImage)
+            cell.imageView.downloadImage(fromUrl: itemIdentifier.thumbnail?.path ?? " ",placeHolderImage: Images.placeHolderResourceImage)
             return cell
         }
         
