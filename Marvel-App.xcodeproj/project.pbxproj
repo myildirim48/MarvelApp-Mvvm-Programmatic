@@ -66,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		7407857129A4D4F200CE2AE9 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		744821A729AAAB1A00DBF92D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		744C5C78299EBFFE00C0318F /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		744C5C7A299EEE9000C0318F /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		749157DA29A4EDDD002F1643 /* SearchResuableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResuableView.swift; sourceTree = "<group>"; };
@@ -184,6 +185,7 @@
 				74D8AF8B2993C5C5008D5B62 /* Extensions */,
 				749157ED29A7BCD1002F1643 /* Persistence */,
 				74D8AF792993BC67008D5B62 /* Info.plist */,
+				744821A729AAAB1A00DBF92D /* README.md */,
 			);
 			path = "Marvel-App";
 			sourceTree = "<group>";
